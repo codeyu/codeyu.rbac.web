@@ -1,0 +1,117 @@
+﻿@model Murphy.Entity.BaseOrganize
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑机构</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/noty/jquery.noty.js"></script>
+    <script src="~/media/noty/layouts/center.js"></script>
+    <script src="~/media/noty/themes/default.js"></script>
+    <script src="~/media/easytabs/jquery.hashchange.min.js"></script>
+    <script src="~/media/easytabs/jquery.easytabs.min.js"></script>
+    <script src="~/media/artdialog/artDialog.js?skin=blue"></script>
+    <script src="~/media/artdialog/plugins/iframeTools.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <div class="control-group">
+        <div class="alert  alert-error hide">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <span id="alert-txt"></span>
+        </div>
+    </div>
+    <form action="#" method="post" class="form-horizontal" name="updateForm" id="updateForm">
+        <input type="hidden" id="OrganizeId" name="OrganizeId" value="@Model.Id" />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+            <tbody>
+                <tr>
+                    <td width="160">机构简称：</td>
+                    <td><input type="text" class="input-xlarge" onchange=checkinput('Name','NameSpan') id="Name" name="Name" value="@Model.Name" /><span id="NameSpan"></span></td>
+                </tr>
+                <tr>
+                    <td width="160">机构全称：</td>
+                    <td><input type="text" class="input-xlarge" id="FullName" name="FullName" value="@Model.FullName" /></td>
+                </tr>
+                <tr>
+                    <td>上级机构名称</td>
+                    <td>
+                        <button class="Browser" type="button" id="selectOrganize"></button>
+                        <span id="ParentNameSpan"></span>
+                        <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>机构编码：</td>
+                    <td><input type="text" class="input-xlarge" id="Code" name="Code" value="@Model.Code" /></td>
+                </tr>
+
+                <tr>
+                    <td>机构类别：</td>
+                    <td>
+                        <select id="Type" name="Type" style="width:285px" onchange=checkselect('Type','TypeSpan')>
+                            <option value=""></option>
+                            <option value="1">单位</option>
+                            <option value="2">分部</option>
+                            <option value="3">部门</option>
+                            <option value="4">工作组</option>
+                        </select><span id="TypeSpan"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>办公地点：</td>
+                    <td><textarea class="input-xxlarge" id="Office" name="Office">@Model.Office</textarea></td>
+                </tr>
+                <tr>
+                    <td>机构描述：</td>
+                    <td><textarea cols="60" rows="5" class="input-xxlarge" id="Description" name="Description">@Model.Description</textarea></td>
+                </tr>
+                <tr>
+                    <td>管理员手机号码：</td>
+                    <td><input type="text" class="input-xlarge" id="MobilePhone" name="MobilePhone" value="@Model.MobilePhone" /></td>
+                </tr>
+                <tr>
+                    <td width="140">排序值：</td>
+                    <td><input type="text" class="input-xlarge" id="SortCode" name="SortCode" onkeyup="checkSortCode(this)" oninput="checkSortCode(this)" value="@Model.SortCode"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <label for="Enabled" class="checkbox">
+                            <input type="checkbox" id="Enabled" name="Enabled" value="1" />
+                            有效
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-actions">
+            <button class="btn btn-primary" murphybuttonname="BaseOrganize.Update" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ParentNameSpan").text('@Model.ParentName');
+            $("#Type option[value='@Model.Type']").attr("selected", "selected");
+            $("input[name='Enabled'][value='@Model.Enabled']").attr("checked", "checked");
+        })
+    </script>
+    <script src="~/media/js/organize.js"></script>
+</body>
+</html>

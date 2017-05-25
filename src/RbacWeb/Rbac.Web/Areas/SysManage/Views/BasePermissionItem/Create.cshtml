@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "创建操作权限项";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+    <li><a href="/SysManage/BasePermissionItem/Index">操作权限</a> <span class="divider">/</span></li>
+    <li class="active">创建操作权限项</li>
+</ul>
+<div class="control-group">
+    <div class="alert  alert-error hide">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span id="alert-txt"></span>
+    </div>
+</div>
+<form action="#" method="post" class="form-horizontal" name="createForm" id="createForm">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+        <tbody>
+            <tr>
+                <td width="160">权限项名称：</td>
+                <td><input type="text" class="input-xlarge" onchange=checkinput('Name','NameSpan') id="Name" name="Name" value=""><span id="NameSpan"><img src="/media/images/BacoError.gif"></span></td>
+            </tr>
+            <tr>
+                <td>权限项编码：</td>
+                <td><input type="text" class="input-xlarge" onchange=checkinput('Code','CodeSpan') id="Code" name="Code" value=""><span id="CodeSpan"><img src="/media/images/BacoError.gif"></span></td>
+            </tr>
+            <tr>
+                <td>上级权限项名称：</td>
+                <td>
+                    <button class="Browser" type="button" id="selectPermissionItem"></button>
+                    <span id="ParentNameSpan"></span>
+                    <span id="PermissionItemSortCodeSpan"></span>
+                    <input type="hidden" id="ParentId" name="ParentId" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>备注说明：</td>
+                <td><textarea cols="60" rows="5" class="input-xxlarge" id="Description" name="Description"></textarea></td>
+            </tr>
+            <tr>
+                <td width="140">排序：</td>
+                <td><input type="text" class="input-xlarge" id="SortCode" name="SortCode" value=""></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="IsVisible" class="checkbox">
+                        <input type="checkbox" checked="checked" id="AllowUpdate" name="AllowUpdate" value="1">
+                        允许编辑
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="IsVisible" class="checkbox">
+                        <input type="checkbox" checked="checked" id="AllowDelete" name="AllowDelete" value="1">
+                        允许删除
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="Enabled" class="checkbox">
+                        <input type="checkbox" checked="checked" id="Enabled" name="Enabled" value="1">
+                        有效
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+        <a href="javascript:backTrack()" class="btn">取消</a>
+    </div>
+</form>
+<script src="~/media/js/permissionitem.js"></script>
+

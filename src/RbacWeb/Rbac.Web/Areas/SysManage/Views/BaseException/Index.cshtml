@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Murphy.Entity.BaseFile>
+@{
+    ViewBag.Title = "系统日志";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">日常维护</a> <span class="divider">/</span></li>
+    <li>系统日志 （记录数: <span id="cur_number">@ViewBag.TotalItems</span>）</li>
+</ul>
+
+<table class="table table-hover tree">
+    <thead>
+        <tr>
+            <th style="width: 30%">日志文件</th>
+            <th>文件大小</th>
+            <th style="width: 30%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var baseFile in Model)
+        {
+            <tr>
+                <td>@baseFile.FileName</td>
+                <td>@baseFile.FileSize</td>
+                <td>
+                    <a href="#" onclick="javascript: showFile('@baseFile.FilePath')">查看</a>
+                    <a href="/SysManage/BaseException/DownloadFile?filePath=@baseFile.FilePath">下载</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/media/js/exception.js"></script>

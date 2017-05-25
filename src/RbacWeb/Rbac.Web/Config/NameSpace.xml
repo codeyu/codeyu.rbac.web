@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <namespace>
+    <namespace1>Murphy</namespace1>
+    <namespace2>Murphy</namespace2>
+  </namespace>
+  <namespace>
+    <namespace1>XinYu</namespace1>
+    <namespace2>XinYu</namespace2>
+  </namespace>
+</root>

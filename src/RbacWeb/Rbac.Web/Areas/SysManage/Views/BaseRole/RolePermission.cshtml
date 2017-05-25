@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "编辑权限";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="javascript:void(0) ">基本信息</a> <span class="divider">/</span></li>
+    <li><a href="/SysManage/BaseRole/Index">角色管理</a> <span class="divider">/</span></li>
+    <li>编辑权限</li>
+</ul>
+<div class="alert">
+    <span>当前授权角色：@ViewBag.RoleName</span>
+    <br />
+    <span>注意事项：权限信息改变之后在缓存有效期内是看不到变化的，需要到缓存设置中更新缓存</span>
+</div>
+
+<div id="twitter-bootstrap-container">
+    <div id="twitter-bootstrap-tabs">
+        <ul class="nav nav-tabs">
+            <li><a href="#twitter-module">功能模块</a></li>
+            <li><a href="#twitter-button">操作按钮</a></li>
+            <li><a href="#twitter-data">数据权限</a></li>
+            <li><a href="#twitter-field">字段权限</a></li>
+        </ul>
+        <div class="panels">
+            <div id="twitter-module">
+                <iframe id="roleModuleFrame" name="roleModuleFrame"
+                        width="100%" height="400px" frameborder="0" scrolling="yes"
+                        src=""></iframe>
+            </div>
+            <div id="twitter-button">
+                <iframe id="roleButtonFrame" name="roleButtonFrame"
+                        width="100%" height="400px" frameborder="0" scrolling="yes"
+                        src=""></iframe>
+            </div>
+            <div id="twitter-data">
+                <iframe id="roleDataFrame" name="roleDataFrame"
+                        width="100%" height="400px" frameborder="0" scrolling="yes"
+                        src=""></iframe>
+            </div>
+            <div id="twitter-field">
+                <iframe id="roleFieldFrame" name="roleFieldFrame"
+                        width="100%" height="400px" frameborder="0" scrolling="yes"
+                        src=""></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SysManage").attr("class", "active");
+        $("#SysBasic").addClass('active');
+        $('#twitter-bootstrap-tabs').easytabs();
+        $("#roleModuleFrame").attr("src", "/SysManage/BaseRole/RoleModulePermission?id=" + GetQuery("id"));
+        $("#roleButtonFrame").attr("src", "/SysManage/BaseRole/RoleButtonPermission?id=" + GetQuery("id"));
+        $("#roleFieldFrame").attr("src", "/SysManage/BaseRole/RoleFieldPermission?id=" + GetQuery("id"));
+        $("#roleDataFrame").attr("src", "/SysManage/BaseRole/RoleDataPermission?id=" + GetQuery("id"));
+    });
+</script>

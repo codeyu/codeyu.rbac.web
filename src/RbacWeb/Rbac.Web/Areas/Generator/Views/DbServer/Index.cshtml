@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "生成代码";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">代码生成</a> <span class="divider">/</span></li>
+    <li>表字段列表</li>
+</ul>
+<div class="row-fluid">
+    <div class="span3">
+        <iframe src="/Generator/DbServer/TableTree" class="iframe-left" id="leftFrame" name="leftFrame" scrolling="yes" frameborder="0"></iframe>
+    </div>
+    <div class="span9">
+        <iframe src="/Generator/DbServer/FieldList" class="iframe-right" id="rightFrame" name="rightFrame" scrolling="yes" frameborder="0"></iframe>
+    </div>
+</div>
+<script src="~/media/js/generator/generator.js"></script>

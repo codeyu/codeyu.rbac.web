@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Murphy.Entity.BaseRole>
+@{
+    ViewBag.Title = "角色管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+    <li>角色管理 （记录数: <span id="cur_number">@ViewBag.TotalItems</span>）</li>
+</ul>
+<form action="/SysManage/BaseRole/Index" method="get" name="SearchForm" id="SearchForm" class="form-inline">
+    <div class="input-prepend input-append">
+        <input class="input-large" type="text" id="roleName" name="roleName" value="@ViewBag.RoleName" placeholder="请输入角色名称" />
+        <button class="btn btn-danger" type="submit"><i class="icon-search icon-white"></i> 搜索</button>
+        <button class="btn btn-warning" type="button" id="clean"><i class="icon-share-alt icon-white"></i> 清除</button>
+    </div>
+</form>
+<div class="alert">
+    注意事项：超级管理员角色不可编辑，不可修改，不可编辑，对应权限是系统初始化形成的
+</div>
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a class="btn" murphybuttonname="BaseRole.Create" href="/SysManage/BaseRole/Create">创建角色</a>
+    </div>
+</div>
+<table class="table table-hover tree">
+    <thead>
+        <tr>
+            <th style="width:30px">状态</th>
+            <th style="width:20%;">角色名称</th>
+            <th style="width:10%;">角色编码</th>
+            <th>备注说明</th>
+            <th style="width:60px">允许编辑</th>
+            <th style="width:60px">允许删除</th>
+            <th style="width:5%">排序</th>
+            <th style="width:8%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>
+                    @if (role.Enabled == 1)
+                    {
+                        <img src="~/media/images/content_status_1.png" />
+                    }
+                    else
+                    {
+                        <img src="~/media/images/content_status_0.png" />
+                    }
+                </td>
+                <td>@role.Name</td>
+                <td>@role.Code</td>
+                <td>@role.Description</td>
+                <td style="text-align:center">
+                    @if (role.AllowUpdate == 1)
+                    {
+                        <img src="~/media/images/content_status_1.png" />
+                    }
+                    else
+                    {
+                        <img src="~/media/images/content_status_0.png" />
+                    }
+                </td>
+                <td style="text-align:center">
+                    @if (role.AllowDelete == 1)
+                    {
+                        <img src="~/media/images/content_status_1.png" />
+                    }
+                    else
+                    {
+                        <img src="~/media/images/content_status_0.png" />
+                    }
+                </td>
+
+                <td>@role.SortCode</td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"> 操作 <span class="caret"></span> </a>
+                        <ul class="dropdown-menu pull-right">
+                            @if (role.AllowUpdate == 1)
+                            {
+                                <li><a murphybuttonname="BaseRole.Update" href="/SysManage/BaseRole/Update?id=@role.Id">编辑</a></li>
+
+                            }
+                            else
+                            {
+                                <li class="disabled"><a murphybuttonname="BaseRole.Update" href="javascript:void(0)">编辑</a></li>
+                            }
+                            @if (role.AllowDelete == 1)
+                            {
+
+                                <li><a murphybuttonname="BaseRole.Delete" href="javascript:deleteRole('@role.Id')">删除</a></li>
+                            }
+                            else
+                            {
+                                <li class="disabled"><a murphybuttonname="BaseRole.Delete" href="#">删除</a></li>
+                            }
+                            <li class="divider">/</li>
+                            @if (role.AllowUpdate == 1)
+                                {
+                                    <li><a href="/SysManage/BaseRole/RolePermission?id=@role.Id">编辑权限</a></li>
+                                }
+                                else
+                                {
+                                    <li class="disabled"><a href="javascript:void(0)">编辑权限</a></li>
+                                }
+                            @*<li><a murphybuttonname="BaseRole.Permission" href="/SysManage/BaseRole/RolePermission?id=@role.Id">编辑权限</a></li>*@
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Count() == 0)
+{
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        对不起，没有找到相匹配的记录
+    </div>
+}
+@Html.Raw(ViewBag.Pager)
+<script src="~/media/js/role.js"></script>
+

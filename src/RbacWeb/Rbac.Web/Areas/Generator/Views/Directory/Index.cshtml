@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Murphy.Entity.DataBaseDirectory>
+@{
+    ViewBag.Title = "保存目录";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">代码生成</a> <span class="divider">/</span></li>
+    <li>保存目录</li>
+</ul>
+<div class="alert">
+    注意事项：生成代码时默认取最后一条目录值作为保存目录
+</div>
+<div class="input-prepend input-append">
+    <div class="btn-group">
+        <a class="btn" href="javascript: createDirectory()">创建</a>
+        <button class="btn" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存" onclick="saveDirectory()">保存</button>
+    </div>
+</div>
+<table class="table table-hover" id="directoryTable">
+    <thead>
+        <tr>
+            <th>目录</th>
+            <th style="width:10%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 0;
+        }
+        @foreach (var directory in Model)
+        {
+            <tr>
+                <td>
+                    <input type="hidden" name="ItemIndex" value="@index" />
+                    <input type="text" class="input-xlarge" style="width:96%" id="directoryName_@index" name="directoryName_@index" value="@directory.Name" />
+                </td>
+                <td>
+                    <a href="javascript:deleteDirectory(@index)">删除</a>
+                </td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
+@if (Model.Count() == 0)
+{
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        对不起，没有找到相匹配的记录
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SysManage").attr("class", "active");
+        $("#SysGenerator").addClass('active');
+    })
+    //创建目录
+    var createDirectory = function () {
+        var index = $("#directoryTable tbody tr").size() + 1;
+        var tr = '<tr>';
+        tr += '<td>';
+        tr += '<input type="hidden" name="ItemIndex" value="' + index.toString() + '"/>';
+        tr += '<input style="width:96%"  type="text" class="input-xlarge"  id="directoryName_' + index.toString() + '" name="directoryName_' + index.toString() + '" onchange=checkinput("directoryName_' + index.toString() + '","directoryName_' + index.toString() + '_Span") /><span id="directoryName_' + index.toString() + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        tr += '</td>';
+        tr += '<td>';
+        tr += ' <a href="javascript:deleteDirectory(' + index.toString() + ')">删除</a>';
+        tr += '</td>';
+        tr += '</tr>';
+        $("#directoryTable tbody").append(tr);
+    }
+
+    //保存目录
+    var saveDirectory = function () {
+        $("#submit_btn").button("loading");
+        if ($("span>img").length > 0) {
+            showNotice('error', '必要信息不完整', 2000);
+            $("#submit_btn").button("complete");
+            return;
+        }
+
+        var directorys = "";
+        var parent = $("input[type='hidden'][name='ItemIndex']").each(function () {
+            var index = $(this).val();
+            var directoryName = $('#directoryName_' + index).val() || '';
+            directorys += directoryName + "☻";
+        });
+
+        if (directorys.length <= 0) {
+            showNotice('information', "请先创建系统参数", 2000);
+            $("#submit_btn").button("complete");
+            return;
+        }
+
+        $.ajax({
+            url: "/Generator/Directory/SaveDirectory",
+            type: "post",
+            dataType: "json",
+            data: "directorys=" + directorys,
+            success: function (data) {
+                if (data.Status == "+OK") {
+                    showNotice('success', data.Msg, 2000);
+                } else {
+                    showNotice('error', data.Msg, 2000);
+                }
+                setTimeout(function () {
+                    $("#submit_btn").button("complete");
+                }, (2000));
+            }
+        });
+    }
+
+    //删除目录
+    var deleteDirectory = function (index) {
+        art.dialog.confirm("您确认要删除目录吗 ?", function () {
+            var directoryName = $("#directoryName_" + index + "").val() || '';
+            $("#directoryTable tbody tr td input[type='hidden']").each(function () {
+                //后端拼接的不能删除
+                if ($(this).val() == index.toString()) {
+                    $(this).parent().parent().remove();
+                }
+            });
+            $.ajax({
+                url: "/Generator/Directory/DeleteDirectory",
+                type: "post",
+                dataType: "json",
+                data: "directoryName=" + directoryName,
+                success: function (data) {
+                    if (data.Status == "+OK") {
+                        showNotice('success', data.Msg, 2000);
+                    } else {
+                        showNotice('error', data.Msg, 2000);
+                    }
+                    setTimeout(function () {
+                        $("#submit_btn").button("complete");
+                    }, (2000));
+                }
+            });
+        });
+    }
+
+</script>

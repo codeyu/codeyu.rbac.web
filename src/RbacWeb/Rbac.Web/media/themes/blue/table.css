@@ -1,0 +1,13 @@
+﻿.table {
+    border-top-width: 2px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: #135aa4;
+    border-bottom-color: #CCCCCC;
+}
+.table th {
+    background-image: url(/media/images/th-bg.png);
+    background-repeat: repeat-x;
+    background-position: center;
+}

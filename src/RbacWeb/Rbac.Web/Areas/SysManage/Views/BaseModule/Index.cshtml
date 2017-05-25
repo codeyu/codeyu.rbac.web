@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Murphy.Entity.BaseModule>
+@{
+    ViewBag.Title = "功能模块";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+    <li class="active">功能模块（记录数: <span id="cur_number">@ViewBag.TotalItems</span>）</li>
+</ul>
+<div class="alert">
+    注意事项：排序值直接影响树形展示，需要按照规则填写
+</div>
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a class="btn" murphybuttonname="BaseModule.Create" href="/SysManage/BaseModule/Create">创建模块</a>
+    </div>
+</div>
+<table class="table table-hover tree">
+    <thead>
+        <tr>
+            <th style="width: 15%">菜单名称</th>
+            <th style="width: 15%">菜单编码</th>
+            <th style="width: 4%">图标</th>
+            <th style="width: 15%">上级菜单</th>
+            <th>链接地址</th>
+            <th style="width:4%">公开</th>
+            <th style="width:4%">有效</th>
+            <th style="width:10%">排序</th>
+            <th style="width:8%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var module in Model)
+        {
+            var result = string.Empty;
+            if (module.ParentId != "0")
+            {
+                result = "treegrid-parent-" + module.ParentId;
+            }
+            <tr class="treegrid-@module.Id @result">
+                <td>@module.Name</td>
+                <td>@module.Code</td>
+                <td><i class="icon16 @module.IconUrl"></i></td>
+                <td>@module.ParentName</td>
+                <td>@module.NavigationUrl</td>
+                <td>
+                    @if (module.IsVisible == 1)
+                    {
+                        <img src="~/media/images/content_status_1.png" />
+                    }
+                    else
+                    {
+                        <img src="~/media/images/content_status_0.png" />
+                    }
+                </td>
+                <td>
+                    @if (module.Enabled == 1)
+                    {
+                        <img src="~/media/images/content_status_1.png" />
+                    }
+                    else
+                    {
+                        <img src="~/media/images/content_status_0.png" />
+                    }
+                </td>
+                <td>@module.SortCode</td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"> 操作 <span class="caret"></span> </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a murphybuttonname="BaseModule.Update" href="/SysManage/BaseModule/Update?id=@module.Id">编辑</a></li>
+                            <li><a murphybuttonname="BaseModule.Delete" href="javascript:deleteModule('@module.Id','@module.Amount')">删除</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/media/js/module.js"></script>
+<script src="~/media/js/scrollup.js"></script>

@@ -1,0 +1,78 @@
+﻿@model Murphy.Entity.BaseRole
+@{
+    ViewBag.Title = "编辑角色";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+    <li><a href="/SysManage/BaseRole/Index">角色管理</a> <span class="divider">/</span></li>
+    <li class="active">编辑角色</li>
+</ul>
+<div class="control-group">
+    <div class="alert  alert-error hide">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span id="alert-txt"></span>
+    </div>
+</div>
+<form action="#" method="post" class="form-horizontal" name="updateForm" id="updateForm">
+    <input type="hidden" id="RoleId" name="RoleId" value="@Model.Id"/>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+        <tbody>
+            <tr>
+                <td width="160">角色名称：</td>
+                <td><input type="text" class="input-xlarge" onchange=checkinput('Name','NameSpan') id="Name" name="Name" value="@Model.Name"><span id="NameSpan"></span></td>
+            </tr>
+            <tr>
+                <td>角色编码：</td>
+                <td><input type="text" class="input-xlarge" id="Code" name="Code" value="@Model.Code"></td>
+            </tr>
+            <tr>
+                <td>角色描述：</td>
+                <td><textarea cols="60" rows="5" class="input-xxlarge" id="Description" name="Description">@Model.Description</textarea></td>
+            </tr>
+            <tr>
+                <td width="140">排序：</td>
+                <td><input type="text" class="input-xlarge" onkeyup="checkSortCode(this)" oninput="checkSortCode(this)" id="SortCode" name="SortCode" value="@Model.SortCode"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="IsVisible" class="checkbox">
+                        <input type="checkbox"  id="AllowUpdate" name="AllowUpdate" value="1">
+                        允许编辑
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="IsVisible" class="checkbox">
+                        <input type="checkbox"  id="AllowDelete" name="AllowDelete" value="1">
+                        允许删除
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="Enabled" class="checkbox">
+                        <input type="checkbox" id="Enabled" name="Enabled" value="1">
+                        有效
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[name='Enabled'][value='@Model.Enabled']").attr("checked", "checked");
+        $("input[name='AllowUpdate'][value='@Model.AllowUpdate']").attr("checked", "checked");
+        $("input[name='AllowDelete'][value='@Model.AllowDelete']").attr("checked", "checked");
+    })
+</script>
+<script src="~/media/js/role.js"></script>

@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "字段编辑";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a class="btn" href="javascript:createField()">添加字段</a>
+        <a class="btn" href="javascript:deleteField()">删除字段</a>
+        <button class="btn" type="button" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+    </div>
+</div>
+<table class="table table-hover" id="fieldTable">
+    <thead>
+        <tr>
+            <th style="width: 20%">数据库字段名称</th>
+            <th style="width: 20%">字段显示名</th>
+            <th>呈现形式</th>
+            <th style="width: 20%">字段类型</th>
+            <th style="width: 10%">排序值</th>
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+</table>
+<script src="~/media/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    })
+
+    //创建字段
+    var createField = function () {
+        var index = $("#fieldTable tbody tr").size() + 1;
+        var html = '';
+        html += '<tr>';
+
+        //数据库字段名
+        html += '<td>';
+        html += '<input type="hidden" name="ItemIndex" value="' + index + '"/>';
+        html += '<input class="input" type="text" style="width:90%"  id="FieldName_' + index + '" name=FieldName_' + index + '" onchange=checkinput("FieldName_' + index + '","FieldName_' + index + '_Span") />';
+        html += '<span id="FieldName_' + index + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        html += '</td>';
+
+        //字段显示名
+        html += '<td>';
+        html += '<input class="input" type="text" style="width:90%"  id="DisplayName_' + index + '" name=DisplayName_' + index + '" onchange=checkinput("DisplayName_' + index + '","DisplayName_' + index + '_Span") />';
+        html += '<span id="DisplayName_' + index + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        html += '</td>';
+
+        //呈现形式
+        html += '<td>';
+        //HTML表现类型
+        html += "<select id='HtmlShowType_" + index + "' name='HtmlShowType_" + index + "'  onChange='onChangHtmlShowType(" + index + ")'><option value='1' selected='selected'>单行文本框</option><option value='2'>多行文本框</option><option value='3'>浏览按钮</option><option value='4'>选择框</option><option value='5'>附件上传</option></select>";
+        //HTML表现形式
+        html += "<div id=div1_" + index + " style='display: inline;'>类型<select name='HtmlShowDetailType_" + index + "' id='HtmlShowDetailType_" + index + "' onChange='onChangHtmlShowDetailType(" + index + ")'><option value='1' selected='selected'>文本</option><option value='2'>整数</option><option value='3'>浮点数</option></select></div>";
+        //文本长度
+        html += '<div id=div1_1_' + index + ' style="display: inline;"><input class="" type="text" id="TextLength_' + index + '" name=TextLength_' + index + '" onchange=checkinput("TextLength_' + index + '","TextLength_' + index + '_Span") />';
+        html += '<span id="TextLength_' + index + '_Span"><img src="/media/images/BacoError.gif"></span></div>';
+        //小数位数
+        html += "<div id='div1_3_" + index + "' style='display:none'>小数位数<select id='DecimalPlace_" + index + "' name='DecimalPlace_" + index + "'><option value='1'>1</option><option value='2' selected>2</option><option value='3'>3</option><option value='4'>4</option></select></div>";
+        //文本框高度值
+        html += '<div id=div2_' + index + ' style="display: none;" >高度<input class="" type="text" id="TextHeight_' + index + '" name=TextHeight_' + index + '"  /></div>';
+
+        //当选择游览框时对应的值列表
+        html += "<div id=div3_" + index + " style='display: none;'>类型<select id='BroswerType_" + index + "' name='BroswerType_" + index + "'><option value='1'>用户</option><option value='2'>部门</option><option value='3'>角色</option><option value='4'>岗位</option><option value='5'>日期</option><option value='6'>分管领导</option></select></div>";
+
+        //当选择选择框时 添加按钮
+        html += "<div id='div4_" + index + "' style='display: none;'><div class='btn-toolbar'><div class='btn-group'> <a class='btn' href='javascript:createSelectionContent()'>添加内容</a></div></div></div>";
+        //当选择选择框时 表格显示
+        html += "<div id='div4_1_" + index + "' style='display:none'><table id='selectionTable'><thead><tr><th>可选项文字</th><th>可选项编码</th><th>默认值</th><th>操作</th></tr></thead><tbody></tbody></table></div>";
+        html += '</td>';
+
+        //字段类型
+        html += '<td>';
+        html += "<select id='FieldType_" + index + "' name='FieldType_" + index + "'><option value='varchar' selected='selected'>varchar</option><option value='2'>多行文本框</option><option value='3'>浏览按钮</option><option value='4'>选择框</option><option value='5'>附件上传</option></select>";
+        html += '</td>';
+
+        //排序值
+        html += '<td>';
+        html += '<input class="" type="text" style="width:90%"  id="SortCode_' + index + '" name=SortCode_' + index + '" onkeyup="checkSortCode(this)" oninput="checkSortCode(this)"  />';
+        html += '</td>';
+
+        html += '</tr>';
+        $("#fieldTable tbody").append(html);    
+    }
+
+    //删除字段
+    var deleteField = function () {
+
+    }
+
+    var onChangHtmlShowType = function (index) {
+        var htmlShowType = $('#HtmlShowType_' + index + ' option:selected').val();
+        //单行文本框
+        if (htmlShowType == 1) {
+            $("#div1_" + index + "").css("display", "inline");
+            $("#div1_1_" + index + "").css("display", "inline");
+            $("#div1_3_" + index + "").css("display", "none");
+            $("#div2_" + index + "").css("display", "none");
+            $("#div3_" + index + "").css("display", "none");
+            $("#div4_" + index + "").css("display", "none");
+            $("#div4_1_" + index + "").css("display", "none");
+        }
+        //多行文本框
+        if (htmlShowType == 2) {
+            $("#div1_" + index + "").css("display", "none");
+            $("#div1_1_" + index + "").css("display", "none");
+            $("#div1_3_" + index + "").css("display", "none");
+            $("#div2_" + index + "").css("display", "inline");
+            $("#div3_" + index + "").css("display", "none");
+            $("#div4_" + index + "").css("display", "none");
+            $("#div4_1_" + index + "").css("display", "none");
+        }
+        //浏览按钮
+        if (htmlShowType == 3) {
+            $("#div1_" + index + "").css("display", "none");
+            $("#div1_1_" + index + "").css("display", "none");
+            $("#div1_3_" + index + "").css("display", "none");
+            $("#div2_" + index + "").css("display", "none");
+            $("#div3_" + index + "").css("display", "inline");
+            $("#div4_" + index + "").css("display", "none");
+            $("#div4_1_" + index + "").css("display", "none");
+        }
+        if (htmlShowType == 4) {
+            $("#div1_" + index + "").css("display", "none");
+            $("#div1_1_" + index + "").css("display", "none");
+            $("#div1_3_" + index + "").css("display", "none");
+            $("#div2_" + index + "").css("display", "none");
+            $("#div3_" + index + "").css("display", "none");
+            $("#div4_" + index + "").css("display", "inline");
+            $("#div4_1_" + index + "").css("display", "inline");
+        }
+    }
+
+    var onChangHtmlShowDetailType = function (index) {
+
+
+        var htmlShowDetailType = $('#HtmlShowDetailType_' + index + ' option:selected').val();
+
+        if (htmlShowDetailType == 1) {
+            $("#div1_" + index + "").css("display", "inline");
+            $("#div1_1_" + index + "").css("display", "inline");
+            $("#div1_3_" + index + "").css("display", "none");
+            $("#div2_" + index + "").css("display", "none");
+            $("#div3_" + index + "").css("display", "none");
+            $("#div4_" + index + "").css("display", "none");
+            $("#div4_1_" + index + "").css("display", "none");
+        }
+        if (htmlShowDetailType == 2) {
+            $("#div1_" + index + "").css("display", "inline");
+            $("#div1_1_" + index + "").css("display", "none");
+            $("#div1_3_" + index + "").css("display", "none");
+            $("#div2_" + index + "").css("display", "none");
+            $("#div3_" + index + "").css("display", "none");
+            $("#div4_" + index + "").css("display", "none");
+            $("#div4_1_" + index + "").css("display", "none");
+        }
+        if (htmlShowDetailType == 3) {
+            $("#div1_" + index + "").css("display", "inline");
+            $("#div1_1_" + index + "").css("display", "none");
+            $("#div1_3_" + index + "").css("display", "inline");
+            $("#div2_" + index + "").css("display", "none");
+            $("#div3_" + index + "").css("display", "none");
+            $("#div4_" + index + "").css("display", "none");
+            $("#div4_1_" + index + "").css("display", "none");
+        }
+    }
+
+</script>

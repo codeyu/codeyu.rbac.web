@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统管理</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+    <li>岗位管理 （记录数: <span id="cur_number"></span>）</li>
+</ul>
+<div class="row-fluid" >
+    <div class="span3">
+        <iframe src="/SysManage/BaseJobTitle/JobTitleOrganizeTree" class="iframe-left" id="leftFrame" name="leftFrame" scrolling="yes" frameborder="0"></iframe>
+    </div>
+    <div class="span9">
+        <iframe src="/SysManage/BaseJobTitle/JobTitleList" class="iframe-right" id="rightFrame" name="rightFrame" scrolling="yes" frameborder="0"></iframe>
+    </div>
+    <script src="~/media/js/jobtitle.js"></script>
+</div>

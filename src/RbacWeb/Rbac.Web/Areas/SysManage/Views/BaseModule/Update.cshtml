@@ -1,0 +1,91 @@
+﻿@model Murphy.Entity.BaseModule
+@{
+    ViewBag.Title = "编辑模块";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+    <li><a href="/SysManage/BaseModule/Index">功能模块</a> <span class="divider">/</span></li>
+    <li class="active">编辑模块</li>
+</ul>
+<div class="control-group">
+    <div class="alert  alert-error hide">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span id="alert-txt"></span>
+    </div>
+</div>
+<form action="#" method="post" class="form-horizontal" name="updateForm" id="updateForm">
+    <input type="hidden" id="ModuleId" name="ModuleId" value="@Model.Id"/>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+        <tbody>
+            <tr>
+                <td width="160">菜单名称：</td>
+                <td><input type="text" class="input-xlarge" onchange=checkinput('Name','NameSpan') id="Name" name="Name" value="@Model.Name"><span id="NameSpan"></span></td>
+            </tr>
+            <tr>
+                <td>菜单编码：</td>
+                <td><input type="text" class="input-xlarge" id="Code" name="Code" value="@Model.Code"></td>
+            </tr>
+            <tr>
+                <td>上级菜单：</td>
+                <td>
+                    <button class="Browser" type="button" id="selectModule"></button>
+                    <span id="ParentNameSpan">@Model.ParentName</span> 
+                    <span id="ModuleSortCodeSpan">@Model.ParentSortCode</span>
+                    <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+                </td>
+            </tr>
+            <tr>
+                <td>图标：</td>
+                <td>
+                    <input type="text" class="input-xlarge" id="IconUrl" name="IconUrl" value="@Model.IconUrl">
+                </td>
+            </tr>
+            <tr>
+                <td>链接地址：</td>
+                <td>
+                    <input type="text" class="input-xxlarge" id="NavigationUrl" name="NavigationUrl" value="@Model.NavigationUrl">
+                </td>
+            </tr>
+            <tr>
+                <td>目标窗口：</td>
+                <td>
+                    <input type="text" class="input-xlarge" id="NavigationTarget" name="NavigationTarget" value="@Model.NavigationTarget">
+                </td>
+            </tr>
+
+            <tr>
+                <td width="140">排序：</td>
+                <td><input type="text" class="input-xlarge" id="SortCode" name="SortCode" value="@Model.SortCode"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="IsVisible" class="checkbox">
+                        <input type="checkbox" id="IsVisible" name="IsVisible" value="1">
+                        公开
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <label for="Enabled" class="checkbox">
+                        <input type="checkbox" id="Enabled" name="Enabled" value="1">
+                        有效
+                    </label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[name='Enabled'][value='@Model.Enabled']").attr("checked", "checked");
+        $("input[name='IsVisible'][value='@Model.IsVisible']").attr("checked", "checked");
+    })
+</script>
+<script src="~/media/js/module.js"></script>

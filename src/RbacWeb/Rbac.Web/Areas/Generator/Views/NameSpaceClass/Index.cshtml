@@ -1,0 +1,164 @@
+﻿@model IEnumerable<Murphy.Entity.DataBaseNameSpaceClass>
+@{
+    ViewBag.Title = "类库命名";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">代码生成</a> <span class="divider">/</span></li>
+    <li>类库命名</li>
+</ul>
+<div class="alert">
+    注意事项：生成代码时默认取最后一条目录值作为类库命名
+</div>
+<div class="input-prepend input-append">
+    <div class="btn-group">
+        <a class="btn" href="javascript: createNameSpaceClass()">创建</a>
+        <button class="btn" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存" onclick="saveNameSpaceClass()">保存</button>
+    </div>
+</div>
+<table class="table table-hover" id="nameSpaceClassTable">
+    <thead>
+        <tr>
+            <th style="width:20%">实体层</th>
+            <th style="width:20%">业务逻辑层</th>
+            <th>数据访问层</th>
+            <th style="width:20%">数据访问接口层</th>
+            <th style="width:10%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 0;
+        }
+        @foreach (var nameSpaceClass in Model)
+        {
+            <tr>
+                <td>
+                    <input type="hidden" name="ItemIndex" value="@index" />
+                    <input type="text" class="input-xlarge" style="width:96%" id="entityName_@index" name="entityName_@index" value="@nameSpaceClass.Entity" />
+                </td>
+                <td>
+                    <input type="text" class="input-xlarge" style="width:96%" id="businessName_@index" name="businessName_@index" value="@nameSpaceClass.Business" />
+                </td>
+                <td>
+                    <input type="text" class="input-xlarge" style="width:96%" id="dataAccessName_@index" name="dataAccessName_@index" value="@nameSpaceClass.Dal" />
+                </td>
+                <td>
+                    <input type="text" class="input-xlarge" style="width:96%" id="idataAccessName_@index" name="idataAccessName_@index" value="@nameSpaceClass.IDal" />
+                </td>
+                <td>
+                    <a href="javascript:deleteNameSpaceClass(@index)">删除</a>
+                </td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
+@if (Model.Count() == 0)
+{
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        对不起，没有找到相匹配的记录
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SysManage").attr("class", "active");
+        $("#SysGenerator").addClass('active');
+    })
+
+    //创建类库命名
+    var createNameSpaceClass = function () {
+        var index = $("#nameSpaceClassTable tbody tr").size() + 1;
+        var tr = '<tr>';
+        tr += '<td>';
+        tr += '<input type="hidden" name="ItemIndex" value="' + index.toString() + '"/>';
+        tr += '<input style="width:96%"  type="text" class="input-xlarge"  id="entityName_' + index.toString() + '" name="entityName_' + index.toString() + '" onchange=checkinput("entityName_' + index.toString() + '","entityName_' + index.toString() + '_Span") /><span id="entityName_' + index.toString() + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<input style="width:96%"  type="text" class="input-xlarge"  id="businessName_' + index.toString() + '" name="businessName_' + index.toString() + '" onchange=checkinput("businessName_' + index.toString() + '","businessName_' + index.toString() + '_Span") /><span id="businessName_' + index.toString() + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<input style="width:96%"  type="text" class="input-xlarge"  id="dataAccessName_' + index.toString() + '" name="dataAccessName_' + index.toString() + '" onchange=checkinput("dataAccessName_' + index.toString() + '","dataAccessName_' + index.toString() + '_Span") /><span id="dataAccessName_' + index.toString() + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<input style="width:96%"  type="text" class="input-xlarge"  id="idataAccessName_' + index.toString() + '" name="idataAccessName_' + index.toString() + '" onchange=checkinput("idataAccessName_' + index.toString() + '","idataAccessName_' + index.toString() + '_Span") /><span id="idataAccessName_' + index.toString() + '_Span"><img src="/media/images/BacoError.gif"></span>';
+        tr += '</td>';
+        tr += '<td>';
+        tr += ' <a href="javascript:deleteNameSpaceClass(' + index.toString() + ')">删除</a>';
+        tr += '</td>';
+        tr += '</tr>';
+        $("#nameSpaceClassTable tbody").append(tr);
+    }
+    //保存类库命名
+    var saveNameSpaceClass = function () {
+        $("#submit_btn").button("loading");
+        if ($("span>img").length > 0) {
+            showNotice('error', '必要信息不完整', 2000);
+            $("#submit_btn").button("complete");
+            return;
+        }
+
+        var namespaces = "";
+        var namespace = "";
+        var parent = $("input[type='hidden'][name='ItemIndex']").each(function () {
+            var index = $(this).val();
+            var entityName = $('#entityName_' + index).val() || '';
+            var businessName = $('#businessName_' + index).val() || '';
+            var dataAccessName = $('#dataAccessName_' + index).val() || '';
+            var idataAccessName = $('#idataAccessName_' + index).val() || '';
+            namespace += entityName + "☻" + businessName + "☻" + dataAccessName + "☻" + idataAccessName + "≌";
+        });
+        namespaces += namespace;
+
+        $.ajax({
+            url: "/Generator/NameSpaceClass/SaveNameSpaceClass",
+            type: "post",
+            dataType: "json",
+            data: "namespaces=" + namespaces,
+            success: function (data) {
+                if (data.Status == "+OK") {
+                    showNotice('success', data.Msg, 2000);
+                    //setTimeout(function () {
+                    //    window.location.reload(true);
+                    //}, (2000));
+                } else {
+                    showNotice('error', data.Msg, 2000);
+                }
+                setTimeout(function () {
+                    $("#submit_btn").button("complete");
+                }, (2000));
+            }
+        });
+    }
+    //删除类库命名
+    var deleteNameSpaceClass = function (index) {
+        art.dialog.confirm("您确认要删除类库命名吗 ?", function () {
+            var entityName = $("#entityName_" + index + "").val() || '';
+            $("#nameSpaceClassTable tbody tr td input[type='hidden']").each(function () {
+                //后端拼接的不能删除
+                if ($(this).val() == index.toString()) {
+                    $(this).parent().parent().remove();
+                }
+            });
+
+            $.ajax({
+                url: "/Generator/NameSpaceClass/DeleteNameSpaceClass",
+                type: "post",
+                dataType: "json",
+                data: "entityName=" + entityName,
+                success: function (data) {
+                    if (data.Status == "+OK") {
+                        showNotice('success', data.Msg, 2000);
+                    } else {
+                        showNotice('error', data.Msg, 2000);
+                    }
+                    setTimeout(function () {
+                        $("#submit_btn").button("complete");
+                    }, (2000));
+                }
+            });
+        })
+    }
+</script>

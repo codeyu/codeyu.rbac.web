@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "缓存设置";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">日常维护</a> <span class="divider">/</span></li>
+    <li>缓存设置</li>
+</ul>
+<div class="alert">
+    <span>注意事项：更新缓存信息，保证数据及时性</span><br />
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th style="width:20%">缓存名称</th>
+            <th style="width: 20%">缓存键</th>
+            <th>用户列表</th>
+            <th style="width:10%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>用户信息</td>
+            <td>UserInfo</td>
+            <td>
+                <button class="Browser" type="button" id="selectUserInfoUser"></button>
+                <span id="UserInfoUserNameSpan"></span>
+                <input type="hidden" id="UserInfoUserIdList" name="UserInfoUserIdList" value="" />
+            </td>
+            <td><a href="#" murphybuttonname="BaseCache.Update" onclick="javascript: updateCache('UserInfo', 'UserInfoUserIdList')">更新缓存</a></td>
+        </tr>
+        <tr>
+            <td>数据权限</td>
+            <td>DataPermission</td>
+            <td>
+                <button class="Browser" type="button" id="selectDataPermissionUser"></button>
+                <span id="DataPermissionUserNameSpan"></span>
+                <input type="hidden" id="DataPermissionUserIdList" name="DataPermissionUserIdList" value="" />
+            </td>
+            <td><a href="#" murphybuttonname="BaseCache.Update" onclick="javascript: updateCache('DataPermission', 'DataPermissionUserIdList')">更新缓存</a></td>
+        </tr>
+        <tr>
+            <td>字段权限</td>
+            <td>FieldPermission</td>
+            <td>
+                <button class="Browser" type="button" id="selectFieldPermissionUser"></button>
+                <span id="FieldPermissionUserNameSpan"></span>
+                <input type="hidden" id="FieldPermissionUserIdList" name="FieldPermissionUserIdList" value="" />
+            </td>
+            <td><a href="#" murphybuttonname="BaseCache.Update" onclick="javascript: updateCache('FieldPermission', 'FieldPermissionUserIdList')">更新缓存</a></td>
+        </tr>
+        <tr>
+            <td>操作按钮权限</td>
+            <td>ButtonPermission</td>
+            <td>
+                <button class="Browser" type="button" id="selectButtonPermissionUser"></button>
+                <span id="ButtonPermissionUserNameSpan"></span>
+                <input type="hidden" id="ButtonPermissionUserIdList" name="ButtonPermissionUserIdList" value="" />
+            </td>
+            <td><a href="#" murphybuttonname="BaseCache.Update" onclick="javascript: updateCache('ButtonPermission', 'ButtonPermissionUserIdList')">更新缓存</a></td>
+        </tr>
+        <tr>
+            <td>功能模块权限</td>
+            <td>ModulePermission</td>
+            <td>
+                <button class="Browser" type="button" id="selectModulePermissionUser"></button>
+                <span id="ModulePermissionUserNameSpan"></span>
+                <input type="hidden" id="ModulePermissionUserIdList" name="ModulePermissionUserIdList" value="" />
+            </td>
+            <td><a href="#" murphybuttonname="BaseCache.Update" onclick="javascript: updateCache('ModulePermission', 'ModulePermissionUserIdList')">更新缓存</a></td>
+        </tr>
+    </tbody>
+</table>
+<script src="~/media/js/cache.js"></script>

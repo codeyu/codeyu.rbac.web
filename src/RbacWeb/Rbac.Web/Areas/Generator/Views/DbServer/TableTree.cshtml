@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>表树形</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <ul id="tableTree" class="ztree"></ul>
+    <script type="text/javascript">
+        var zTreeObj;
+        var setting = {
+            view: {
+                fontCss: getFont,
+                nameIsHTML: true
+            },
+            check: {
+                enable: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+        function getFont(treeId, node) {
+            return node.font ? node.font : {};
+        }
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Generator/DbServer/GetTableTree",
+                type: "post",
+                dataType: "json",
+                success: function (zNodes) {
+                    $.fn.zTree.init($("#tableTree"), setting, zNodes);
+                    zTreeObj = $.fn.zTree.getZTreeObj("tableTree");
+                    //zTreeObj.expandAll(true);
+                }
+            });
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+﻿@model Murphy.Entity.BaseUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑用户</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="padding:0px;margin:0px">
+    <ul class="breadcrumb">
+        <li><a href="#">系统设置</a> <span class="divider">/</span></li>
+        <li><a href="/SysManage/BaseUser/UserList?departmentId=@Model.DepartmentId">用户管理</a> <span class="divider">/</span></li>
+        <li class="active">编辑用户</li>
+    </ul>
+    <div class="control-group">
+        <div class="alert  alert-error hide">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <span id="alert-txt"></span>
+        </div>
+    </div>
+    <form action="#" method="post" class="form-horizontal" name="updateForm" id="updateForm">
+        <input type="hidden" id="UserId" name="UserId" value="@Model.Id" />
+        <input type="hidden" id="SelectedRoleId" name="SelectedRoleId" value="@Model.RoleId" />
+        <input type="hidden" id="SelectedJobTitle" name="SelectedJobTitle" value="@Model.JobTitle" />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+            <tbody>
+                <tr>
+                    <td width="140">编号</td>
+                    <td><input type="text" class="input-xlarge" id="WorkCode" name="WorkCode" value="@Model.Code"></td>
+                </tr>
+                <tr>
+                    <td>登陆名</td>
+                    <td><input type="text" class="input-xlarge" onchange=checkinput('UserName','UserNameSpan') id="UserName" name="UserName" value="@Model.UserName"><span id="UserNameSpan"></span></td>
+                </tr>
+                <tr>
+                    <td>姓名</td>
+                    <td><input type="text" class="input-xlarge" onchange=checkinput('RealName','RealNameSpan') id="RealName" name="RealName" value="@Model.RealName"><span id="RealNameSpan"></span></td>
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td>
+                        <select style="width:284px" id="Gender" name="Gender" onchange=checkselect('Gender','GenderSpan')>
+                            <option value=""></option>
+                            <option value="1">男</option>
+                            <option value="0">女</option>
+                        </select>
+                        <span id="GenderSpan"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>部门</td>
+                    <td>
+                        <button class="Browser" type="button" id="selectOrganize"></button>
+                        <span id="departmentSpan"></span>
+                        <input type="hidden" id="departmentId" name="departmentId" value="@Model.DepartmentId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>岗位</td>
+                    <td>
+                        <select style="width:284px" id="JobTitle" name="JobTitle"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>直接上级</td>
+                    <td>
+                        <button class="Browser" type="button" id="selectManager"></button>
+                        <span id="managerSpan">@Model.ManagerName</span>
+                        <input type="hidden" id="managerId" name="managerId" value="@Model.ManagerId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>角色</td>
+                    <td>
+                        <select style="width:284px" id="RoleId" name="RoleId"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>状态</td>
+                    <td>
+                        <select style="width:284px" id="Status" name="Status" onchange=checkselect('Status','StatusSpan')>
+                            <option value=""></option>
+                            <option value="0">试用</option>
+                            <option value="1">正式</option>
+                        </select>
+                        <span id="StatusSpan"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>移动电话</td>
+                    <td><input type="text" class="input-xlarge" id="MobilePhone" name="MobilePhone" value="@Model.MobilePhone"></td>
+                </tr>
+                <tr>
+                    <td>电子邮件</td>
+                    <td><input type="text" class="input-xlarge" id="Email" name="Email" value="@Model.Email"></td>
+                </tr>
+                <tr>
+                    <td>安全级别</td>
+                    <td><input type="text" class="input-xlarge" onkeyup="checkSecurityLevel(this)" oninput="checkSecurityLevel(this)" id="SecurityLevel" name="SecurityLevel" value="@Model.SecLevel"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        //修改初始化值
+        $("#departmentSpan").text('@Model.DepartmentName');
+        $("#managerSpan").text('@Model.ManagerName');
+        $("#Gender option[value='@Model.Gender']").attr("selected", "selected");
+        $("#Status option[value='@Model.Enabled']").attr("selected", "selected");
+    })
+    </script>
+    <script src="~/media/js/user.js"></script>
+</body>
+</html>

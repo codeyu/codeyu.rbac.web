@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Murphy.Entity.BaseAccess>
+@{
+    ViewBag.Title = "登陆日志";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="/InfoCenter/Dashboard/Index">信息中心</a> <span class="divider">/</span></li>
+    <li><a href="/InfoCenter/AccountManage/Index">个人信息</a> <span class="divider">/</span></li>
+    <li>登陆日志 （记录数: <span id="cur_number">@ViewBag.TotalItems</span>）</li>
+</ul>
+<form action="/InfoCenter/AccountManage/AccessLog" method="get" name="SearchForm" id="SearchForm" class="form-inline">
+    <div class="control-group">
+        <span>
+            日志日期:<input type="text" name="date" id="date" style="width: 200px;
+                    height: 18px" onfocus="WdatePicker({ isShowClear: false });" class="Wdate" value="@ViewBag.Date" />
+        </span>
+        用户名称:
+        <div class="input-append">
+            <input class="input-large" id="Username" name="Username" type="text" placeholder="请输入用户名称"
+                   value="@ViewBag.UserName" />
+            <button class="btn btn-danger" type="submit"><i class="icon-search icon-white"></i> 搜索</button>
+            <button class="btn btn-warning" type="button" id="clean"><i class="icon-share-alt icon-white"></i> 清除</button>
+        </div>
+    </div>
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th style="width:4%">状态</th>
+            <th style="width:10%">登陆账号</th>
+            <th style="width:10%">用户名称</th>
+            <th style="width:12%">登陆IP</th>
+            <th style="width:8%">登陆机器名</th>
+            <th style="width:15%">登陆日期</th>
+            <th>备注说明</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var accessLog in Model)
+        {
+            <tr>
+                <td>
+                    @if (accessLog.Enabled == 1)
+                    {
+                        <img src="~/media/images/content_status_1.png" />
+                    }
+                    else
+                    {
+                        <img src="~/media/images/content_status_0.png" />
+                    }
+                </td>
+                <td>@accessLog.UserName</td>
+                <td>@accessLog.RealName</td>
+                <td>@accessLog.IPAddress</td>
+                <td>@accessLog.MachineName</td>
+                <td>@accessLog.Date</td>
+                <td>@accessLog.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Count() == 0)
+{
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        对不起，没有找到相匹配的记录
+    </div>
+}
+@Html.Raw(ViewBag.Pager)
+<script src="~/media/js/infocenter/account.js"></script>

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>选择模块</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <div>
+        <div id="sidetreecontrol"> <a href="javascript:packUpAll()">全部收起</a> | <a href="javascript:expandAll()">全部展开</a> </div>
+        <ul id="moduleTree" class="ztree"></ul>
+    </div>
+    <script type="text/javascript">
+        var zTreeObj;
+        var setting = {
+            view: {
+                fontCss: getFont,
+                nameIsHTML: true
+            },
+            check: {
+                enable: true,
+                chkStyle: "radio",
+                radioType: "all"
+            },
+            data: {
+                key: {
+                    checked: "isChecked"
+                },
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+        function getFont(treeId, node) {
+            return node.font ? node.font : {};
+        }
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Controls/Public/GetModuleTree?moduleId=" + GetQuery("moduleId"),
+                type: "post",
+                dataType: "json",
+                success: function (zNodes) {
+                    $.fn.zTree.init($("#moduleTree"), setting, zNodes);
+                    zTreeObj = $.fn.zTree.getZTreeObj("moduleTree");
+                    zTreeObj.expandAll(true);
+                }
+            });
+        })
+
+        //全部收起
+        var packUpAll = function () {
+            var moduleTreeObj = $.fn.zTree.getZTreeObj("moduleTree");
+            moduleTreeObj.expandAll(false);
+        }
+        //全部展开
+        var expandAll = function () {
+            var moduleTreeObj = $.fn.zTree.getZTreeObj("moduleTree");
+            moduleTreeObj.expandAll(true);
+        }
+    </script>
+</body>
+</html>

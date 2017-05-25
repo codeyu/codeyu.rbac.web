@@ -1,0 +1,50 @@
+﻿@model Murphy.Entity.BaseUser
+
+@{
+    ViewBag.Title = "个人信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/InfoCenter/Dashboard/Index">信息中心</a> <span class="divider">/</span></li>
+    <li><a href="/InfoCenter/AccountManage/Index">个人信息</a> <span class="divider">/</span></li>
+    <li class="active"> 设置 </li>
+</ul>
+<div class="control-group">
+    <div class="alert  alert-error hide" style="width:170px">
+        <span id="alert-txt"></span>
+    </div>
+</div>
+<form action="#" method="post" name="updateProfile" id="updateProfile">
+    <label>姓名:<span class="required"></span></label>
+    <p>
+        <input name="RealName" type="text" id="RealName" value="@Model.RealName" />
+    </p>
+    <label>性别:<span class="required"></span></label>
+    <p>
+        <select style="width:220px" id="Gender" name="Gender">
+            <option value=""></option>
+            <option value="1">男</option>
+            <option value="0">女</option>
+        </select>
+    </p>
+
+    <label>移动电话:<span class="required"></span></label>
+    <p>
+        <input name="MobilePhone" type="text" id="MobilePhone" value="@Model.MobilePhone" />
+    </p>
+    <label>邮件地址:<span class="required"></span></label>
+    <p>
+        <input name="Email" type="text" id="Email" value="@Model.Email" />
+    </p>
+    <p>&nbsp;</p>
+
+    <div id="content_buttons">
+        <button class="btn btn-primary" murphybuttonname="UserInfo.Update" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在更新个人信息..." data-complete-text="更新个人信息">更新个人信息</button>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Gender option[value='@Model.Gender']").attr("selected", "selected");
+    })
+</script>
+<script src="~/media/js/infocenter/account.js"></script>

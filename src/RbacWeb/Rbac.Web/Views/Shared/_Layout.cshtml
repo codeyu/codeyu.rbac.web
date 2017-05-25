@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/table.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/treegrid/js/jquery.treegrid.js"></script>
+    <script src="~/media/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/media/noty/jquery.noty.js"></script>
+    <script src="~/media/noty/layouts/center.js"></script>
+    <script src="~/media/noty/themes/default.js"></script>
+    <script src="~/media/easytabs/jquery.hashchange.min.js"></script>
+    <script src="~/media/easytabs/jquery.easytabs.min.js"></script>
+    <script src="~/media/artdialog/artDialog.js?skin=blue"></script>
+    <script src="~/media/artdialog/plugins/iframeTools.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+    <style type="text/css">
+        .menuItemIcon {
+            width: 32px;
+            height: 32px;
+            margin-left: 15px;
+            margin-top: 6px;
+            cursor: pointer;
+            /*background: url(/media/images/menutopicons.png) no-repeat;
+            background-position: -74px -74px;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="row-fluid" id="top-row1">
+            <div class="">
+                <div id="logo" style="background: url(@Murphy.Core.RequestCache.GetCacheSystem().SoftwareLogo); background-repeat: no-repeat; background-position: 25px center;"></div>
+            </div>
+            <div class=" pull-right">
+                <div id="top-info">
+                    欢迎您：<a href="/InfoCenter/AccountManage/Index" id="change-profile" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="点击这里可以编辑个人信息">@Murphy.Core.RequestCache.GetCacheUser().UserName</a>  |  <a href="#">@Murphy.Core.RequestCache.GetCacheUser().RoleName</a> | <a href="#">私信</a> | <a href="#">帮助</a> | <a href="#" onclick="javascript:outLogin()">安全退出</a>
+                </div>
+            </div>
+        </div>
+        <div id="top-row2">
+            <ul class="nav nav-tabs pull-left">
+                @{
+                    var modulePermission = Murphy.Core.RequestCache.GetCacheSystem().ModulePermissionObj as List<Murphy.Entity.BaseModulePermission>;
+                }
+                @foreach (Murphy.Entity.BaseModulePermission module in modulePermission.Where(m => m.ParentId == "0"))
+                {
+                    <li><a id="@module.ModuleCode" href="@module.ModuleUrl" onclick="changeTopModule('@module.ModuleId')"><span class="menuItemIcon">@module.ModuleName</span></a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="clearfloat"></div>
+    <div id="main" class="container-fluid">
+        <div class="row-fluid">
+            <div id="sidebar">
+                <ul class="nav nav-pills nav-stacked">
+                    @*@foreach (Murphy.Entity.BaseModulePermission module in modulePermission.Where(m => m.ParentId == Murphy.Core.RequestCache.GetCacheTopModuleId().ModuleId))*@
+                           @foreach (Murphy.Entity.BaseModulePermission module in modulePermission.Where(m => m.ParentId == @ViewBag.TopModuleCode))
+                    {
+                        <li id="@module.ModuleCode">
+                            <a href="javascript:void(0);">
+                                <span class="hasIcon"><i class="icon16 @module.ModuleIcon"></i></span>
+                                @module.ModuleName
+                            </a>
+                            <ul class="sub">
+                                @foreach (Murphy.Entity.BaseModulePermission chilModule in modulePermission.Where(m => m.ParentId == module.ModuleId))
+                                {
+                                    <li><a href="@chilModule.ModuleUrl">
+@chilModule.ModuleName</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div id="content">
+                @RenderBody()
+            </div>
+            <div id="footer">
+                <p>版权所有：@Murphy.Core.RequestCache.GetCacheSystem().SoftwareCopyright   |  版本类型： @Murphy.Core.RequestCache.GetCacheSystem().SoftwareEdition</p>
+            </div>
+        </div>
+    </div>
+    <div class="clearfloat"></div>
+</body>
+</html>

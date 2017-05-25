@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Murphy.Entity.BaseItemDetail>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>字典明细</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/noty/jquery.noty.js"></script>
+    <script src="~/media/noty/layouts/center.js"></script>
+    <script src="~/media/noty/themes/default.js"></script>
+    <script src="~/media/easytabs/jquery.hashchange.min.js"></script>
+    <script src="~/media/easytabs/jquery.easytabs.min.js"></script>
+    <script src="~/media/artdialog/artDialog.js?skin=blue"></script>
+    <script src="~/media/artdialog/plugins/iframeTools.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <div class="input-prepend input-append">
+        <div class="btn-group">
+            <a class="btn" murphybuttonname="BaseItem.Create" href="javascript: createItemDetail()">创建字典</a>
+            <a class="btn" murphybuttonname="BaseItem.Type" href="/SysManage/BaseItem/CreateItem">管理字典类别</a>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width:30px">状态</th>
+                <th style="width: 8%; ">编码</th>
+                <th style="width: 8%; ">文本值</th>
+                <th style="width: 15%; ">类别名</th>
+                <th>描述说明</th>
+                <th style="width: 15%;">是否默认</th>
+                <th style="width: 8%; ">排序值</th>
+                <th style="width: 8%; ">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Enabled == 1)
+                        {
+                            <img src="~/media/images/content_status_1.png" />
+                        }
+                        else
+                        {
+                            <img src="~/media/images/content_status_0.png" />
+                        }
+                    </td>
+                    <td>@item.SelectValue</td>
+                    <td>@item.SelectText</td>
+                    <td>@item.ItemName</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @if (item.IsDefault == 1)
+                        {
+                            <img src="~/media/images/content_status_1.png" />
+                        }
+                        else
+                        {
+                            <img src="~/media/images/content_status_0.png" />
+                        }
+                    </td>
+                    <td>@item.SortCode</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"> 操作 <span class="caret"></span> </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a murphybuttonname="BaseItem.Update" href="javascript: updateItemDetail('@item.Id')">编辑</a></li>
+                                <li><a murphybuttonname="BaseItem.Delete" href="javascript: deleteItemDetail('@item.Id')">删除</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (Model.Count() == 0)
+    {
+        <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            对不起，没有找到相匹配的记录
+        </div>
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            parent.$("#cur_number").text(@ViewBag.TotalItems);
+        })
+    </script>
+    <script src="~/media/js/item.js"></script>
+</body>
+</html>

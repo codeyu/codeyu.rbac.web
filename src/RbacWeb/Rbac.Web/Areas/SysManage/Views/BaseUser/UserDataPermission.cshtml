@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户数据权限</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/table.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/noty/jquery.noty.js"></script>
+    <script src="~/media/noty/layouts/center.js"></script>
+    <script src="~/media/noty/themes/default.js"></script>
+    <script src="~/media/easytabs/jquery.hashchange.min.js"></script>
+    <script src="~/media/easytabs/jquery.easytabs.min.js"></script>
+    <script src="~/media/artdialog/artDialog.js?skin=blue"></script>
+    <script src="~/media/artdialog/plugins/iframeTools.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button class="btn" type="button" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存" onclick="javascript: SaveUserDataPermission('@ViewBag.UserId')">授权</button>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th style="width:4%;"></th>
+            <th style="width:20%">范围</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td><input type="radio" name="optionsRadios" id="optionsRadios1" value="Company" onclick="showOrganize(0)" /></td>
+            <td>全部数据</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="optionsRadios" id="optionsRadios2" value="SubCompany" onclick="showOrganize(0)" /></td>
+            <td>所在分部</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="optionsRadios" id="optionsRadios3" value="Department" onclick="showOrganize(0)" /></td>
+            <td>所在部门</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="optionsRadios" id="optionsRadios4" value="WorkGroup" onclick="showOrganize(0)" /></td>
+            <td>所在工作组</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="optionsRadios" id="optionsRadios7" value="ItSelf" onclick="showOrganize(0)" /></td>
+            <td>仅本人</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="optionsRadios" id="optionsRadios7" value="Details" onclick="showOrganize(1)" /></td>
+            <td>明细</td>
+            <td>
+                <div style="padding-top:10px;display:none" id="organizeDiv">
+                    <div id="sidetreecontrol"> <a style="color: #08c;" href="javascript:packUpAllOrganize()">全部收起</a> | <a style="color: #08c;" href="javascript:expandAllOrganize()">全部展开</a> </div>
+                    <ul id="organizeTree" class="ztree"></ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[name='optionsRadios'][value='@ViewBag.Constraint']").attr("checked", "checked");
+            if ('@ViewBag.Constraint' == "Details") {
+                $("#organizeDiv").show();
+            }
+        })
+    </script>
+    <script src="~/media/js/userdatapermission.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿@model Murphy.Entity.BaseJobTitle
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑岗位</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="padding:0px;margin:0px">
+    <ul class="breadcrumb">
+        <li><a href="javascript:void(0)">基本信息</a> <span class="divider">/</span></li>
+        <li><a href="/SysManage/BaseJobTitle/JobTitleList">岗位管理</a> <span class="divider">/</span></li>
+        <li class="active">创建岗位</li>
+    </ul>
+    <div class="control-group">
+        <div class="alert  alert-error hide">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <span id="alert-txt"></span>
+        </div>
+    </div>
+    <form action="#" method="post" class="form-horizontal" name="updateForm" id="updateForm">
+        <input type="hidden" id="JobTitleId" name="JobTitleId" value="@Model.Id" />
+        <input type="hidden" id="departmentId" name="departmentId" value="@Model.DepartmentId" />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+            <tbody>
+                <tr>
+                    <td>岗位名称</td>
+                    <td>
+                        <input type="text" class="input-xlarge" onchange=checkinput('Name','NameSpan') id ="Name" name="Name" value="@Model.Name">
+                        <span id="NameSpan"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>岗位编码</td>
+                    <td><input type="text" class="input-xlarge" id="Code" name="Code" value="@Model.Code"></td>
+                </tr>
+                <tr>
+                    <td>岗位描述</td>
+                    <td>
+                        <textarea cols="60" rows="5" class="input-xxlarge" id="Description" name="Description">@Model.Description</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>排序值</td>
+                    <td><input type="text" class="input-xlarge" id="SortCode" name="SortCode" onkeyup="checkSortCode(this)" oninput="checkSortCode(this)" value="@Model.SortCode"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <label for="Enabled" class="checkbox">
+                            <input type="checkbox" id="Enabled" name="Enabled" value="1" />
+                            有效
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+     
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[name='Enabled'][value='@Model.Enabled']").attr("checked", "checked");
+        });
+    </script>
+    <script src="~/media/js/jobtitle.js"></script>
+</body>
+</html>

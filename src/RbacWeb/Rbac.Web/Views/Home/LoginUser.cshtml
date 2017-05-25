@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>系统登录</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/login/login.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/js/login.js"></script>
+</head>
+<body class="login">
+   
+    <div class="header">
+        <div class="logo" style="background: url(''); background-repeat: no-repeat; background-position: 25px 60px;"></div>
+    </div>
+    <div class="main" id="main">
+        <div class="content">
+            <h3 class="form-title">登录到帐户</h3>
+            <form action="#" method="post" enctype="application/x-www-form-urlencoded" name="loginForm" target="_self" class="login-form" id="loginForm">
+
+                <div class="control-group">
+                    <div class="alert  alert-error hide">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <span id="alert-txt"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">用户名</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-user"></i>
+                            <input name="UserName" type="text" class="input-large" id="UserName" placeholder="用户名" value="super" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">密码</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-lock"></i>
+                            <input name="UserPassword" type="password" class="input-large" id="UserPassword" placeholder="密码" value="super" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">验证码</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-ok-circle"></i>
+                            <input name="vcode" type="text" class="input-small" id="vcode" placeholder="验证码" value="" />
+                            <img src="/Home/ValidateCode?@DateTime.Now.Ticks" name="captcha" id="captcha" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group" id="btn-login">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-success"> <i class="icon-ok"></i> 立即登录</button>
+
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="IsAlways" class="checkbox">
+                        <input type="checkbox" name="IsAlways" id="IsAlways" value="1" />
+                        在这台计算机上记住我 （2周时间）
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label>使用第三方帐号登录：</label>
+                    <ul id="third-login" class="unstyled inline">
+                        <li><a href="javascript:void(0)" class="third-tsina" title="新浪微博"></a></li>
+                        <li><a href="javascript:void(0)" class="third-qq" title="腾讯QQ"></a></li>
+                        <li><a href="javascript:void(0)" class="third-baidu" title="百度"></a></li>
+                        <li><a href="javascript:void(0)" class="third-renren" title="人人"></a></li>
+                        <li><a href="javascript:void(0)" class="third-taobao" title="淘宝"></a></li>
+                        <li><a href="javascript:void(0)" class="third-tsohu" title="搜狐微博"></a></li>
+                        <li><a href="javascript:void(0)" class="third-tqq" title="腾讯微博"></a></li>
+                        <li><a href="javascript:void(0)" class="third-kaixin001" title="开心网"></a></li>
+                        <li><a href="javascript:void(0)" class="third-douban" title="豆瓣"></a></li>
+                    </ul>
+                </div>
+            </form>
+            <div class="forget-password">
+                <p> <a href="javascript:void(0)" id="forget-password">我忘记了登录密码？</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+</body>
+</html>

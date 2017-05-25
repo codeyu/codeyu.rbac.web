@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "数据字典";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">日常维护</a> <span class="divider">/</span></li>
+    <li><a href="/SysManage/BaseItem/Index">数据字典</a>（记录数: <span id="cur_number"></span>）</li>
+</ul>
+<div class="row-fluid">
+    <div class="span3">
+        <iframe src="/SysManage/BaseItem/ItemTree" class="iframe-left" id="leftFrame" name="leftFrame" scrolling="yes"></iframe>
+    </div>
+    <div class="span9">
+        <iframe src="/SysManage/BaseItem/ItemDetailList" class="iframe-right" id="rightFrame" name="rightFrame" scrolling="yes"></iframe>
+    </div>
+</div>
+<script src="~/media/js/item.js"></script>

@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户操作按钮权限</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/table.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/noty/jquery.noty.js"></script>
+    <script src="~/media/noty/layouts/center.js"></script>
+    <script src="~/media/noty/themes/default.js"></script>
+    <script src="~/media/easytabs/jquery.hashchange.min.js"></script>
+    <script src="~/media/easytabs/jquery.easytabs.min.js"></script>
+    <script src="~/media/artdialog/artDialog.js?skin=blue"></script>
+    <script src="~/media/artdialog/plugins/iframeTools.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <div class="btn-group">
+        <button class="btn" type="button" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存" onclick="javascript: saveUserButtonPermission('@ViewBag.UserId')">授权</button>
+    </div>
+    <div style="padding-top:10px">
+        <div id="sidetreecontrol"> <a style="color: #08c;" href="javascript:packUpAllButton()">全部收起</a> | <a style="color: #08c;" href="javascript:expandAllButton()">全部展开</a> </div>
+        <ul id="buttonTree" class="ztree"></ul>
+    </div>
+    <script src="~/media/js/userbuttonpermission.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>生成代码</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/table.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <ul class="breadcrumb">
+        <li><a href="javascript:void(0)">代码生成</a> <span class="divider">/</span></li>
+        <li><a href="/Generator/DbServer/FieldList?dataBaseName=@ViewBag.DataBaseName&tableName=@ViewBag.TableName">表字段列表</a> <span class="divider">/</span></li>
+        <li> 生成后台代码</li>
+    </ul>
+    <form action="#" method="post" class="form-horizontal" name="createForm" id="createForm">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table">
+            <tr class="success">
+                <td colspan="4"><strong>参数代码</strong></td>
+            </tr>
+            <tr>
+                <td>
+                    公司：
+                </td>
+                <td>
+                    <input id="Company" type="text" name="Company" value="Murphy" />
+                </td>
+                <td>
+                    创建年份：
+                </td>
+                <td>
+                    <input id="CreateYear" type="text" name="CreateYear" onfocus="WdatePicker({isShowClear: false,skin:'twoer',dateFmt:'yyyy年',onpicked:function(){GetTime();}});" class="Wdate" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    作者：
+                </td>
+                <td>
+                    <input id="Author" type="text" name="Author" value="lixinyu" />
+                </td>
+                <td>
+                    创建时间：
+                </td>
+                <td>
+                    <input id="CreateDate" type="text" name="CreateDate" onfocus="WdatePicker({ isShowClear: false, skin: 'twoer' });" class="Wdate" />
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="4"><strong>生成项目</strong></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" id="Entity" name="Entity">
+                        实体层
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" id="Business" name="Business">
+                        业务逻辑层
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" id="DataAccess" name="DataAccess">
+                        数据访问层
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked" id="IDataAccess" name="IDataAccess">
+                        数据访问接口层
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" id="ProjectValue" name="ProjectValue" />
+        <input type="hidden" id="DataBaseName" name="DataBaseName" value="@ViewBag.DataBaseName"/>
+        <input type="hidden" id="TableName" name="TableName" value="@ViewBag.TableName" />
+        <div class="form-actions">
+            <button class="btn" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存">保存</button>
+            <a href="javascript:backTrack()" class="btn">取消</a>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#createForm").submit(function () {
+                $("#submit_btn").button("loading");
+                var options = {
+                    url: "/Generator/DbServer/CreateCode",
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        if (data.Status == "+OK") {
+                            parent.showNotice('success', data.Msg, 2000);
+                            setTimeout(function () {
+                                window.location.href = "/Generator/DbServer/FieldList?dataBaseName=" + $("#DataBaseName").val() + "&tableName=" + $("#TableName").val();
+                            }, (2000));
+                        } else {
+                            parent.showNotice('error', data.Msg, 2000);
+                        }
+                        setTimeout(function () {
+                            $("#submit_btn").button("complete");
+                        }, (2000));
+                    },
+                    beforeSerialize: function () {
+                        var projectValue = "";
+                        $("input[type='checkbox']:checked").each(function () {
+                            var proId = $(this).attr("Id");
+                            var proValue = $("#" + proId).attr("checked");
+                            projectValue += proId + "☻" + proValue + "≌";
+                        });
+                        $("#ProjectValue").val(projectValue);
+                        //$("#submit_btn").button("complete");
+                    }
+                };
+                $(this).ajaxSubmit(options);
+                return false;
+            });
+        })
+    </script>
+</body>
+</html>

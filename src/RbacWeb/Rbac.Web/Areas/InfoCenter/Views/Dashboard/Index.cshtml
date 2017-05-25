@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "信息中心";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/media/highcharts/jquery-1.5.2.min.js"></script>
+<script src="~/media/highcharts/highcharts.js"></script>
+<script src="~/media/highcharts/theme/grid.js"></script>
+<div>
+    <h5>信息概览</h5>
+    <hr>
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="dashboard-icon dashboard-icon-1">
+                <span><img src="/media/images/dashboard_icon_1.png" width="50" height="50"></span>
+                <span><a href="javascript:void(0)">待阅留言 （420）</a></span>
+
+            </div>
+        </div>
+        <div class="span2">
+            <div class="dashboard-icon dashboard-icon-2">
+                <span><img src="/media/images/dashboard_icon_2.png" width="50" height="50"></span>
+                <span><a href="javascript:void(0)">已阅留言 （988）</a></span>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="dashboard-icon dashboard-icon-3">
+                <span><img src="/media/images/dashboard_icon_3.png" width="50" height="50"></span>
+                <span><a href="javascript:void(0)">信息推送 （0）</a></span>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="dashboard-icon dashboard-icon-4">
+                <span><img src="/media/images/dashboard_icon_4.png" width="50" height="50"></span>
+                <span><a href="javascript:void(0)">会员</a> （<a href="#">80</a> / <a href="#">791</a>）</span>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="dashboard-icon dashboard-icon-5">
+                <span><img src="/media/images/dashboard_icon_5.png" width="50" height="50"></span>
+                <span><a href="javascript:void(0)">通知公告</a> （<a href="#">0</a> / <a href="#"> 5</a>）</span>
+            </div>
+        </div>
+        <div class="span2">
+            <div class="dashboard-icon dashboard-icon-6">
+                <span><img src="/media/images/dashboard_icon_6.png" width="50" height="50"></span>
+                <span><a href="javascript:void(0)">纠错信息</a> （ 1 ）</span>
+            </div>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+    <h5>登陆次数统计</h5>
+    <hr>
+    <div id="container" style="min-width:600px;height:400px;margin:0px;padding:0px">
+    </div>
+</div>
+<script type="text/javascript">
+
+    var chart;
+    $(document).ready(function () {
+        $("#SysDashboard").attr("class", "active");
+        $("#AccountManage").addClass('active');
+        var month = '@ViewBag.month' + " 月份";
+        var text = '@ViewBag.text';
+        var xDate = eval('@ViewBag.xDate');
+        var yDateCount = eval('@ViewBag.yDateCount');
+        chart = new Highcharts.Chart({
+            chart: {
+                //放置图表的容器
+                renderTo: 'container',          
+                plotBackgroundColor: "#fff",
+                plotBorderWidth: null,
+                //图表类型line, spline, area, areaspline, column, bar, pie , scatter 
+                defaultSeriesType: 'line'   
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                //X轴数据
+                categories: xDate,
+                labels: {
+                    //字体倾斜
+                    rotation: -45, 
+                    align: 'right',
+                    style: { font: 'normal 13px 宋体' }
+                }
+            },
+            yAxis: {
+                //Y轴显示文字
+                title: {
+                    text: '登录次数统计'
+                }
+            },
+            tooltip: {
+                enabled: true,
+                formatter: function () {
+                    return '<b>' + this.x + '号</b><br/>' +  '登陆' + Highcharts.numberFormat(this.y, 0) + "次";
+                }
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    //是否显示title
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: month,
+                data: yDateCount
+            }]
+        });
+    });
+</script>

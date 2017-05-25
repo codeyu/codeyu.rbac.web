@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Murphy.Entity.BaseLog>
+@{
+    ViewBag.Title = "操作日志";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/SysManage/BaseSysManage/Index">系统设置</a> <span class="divider">/</span></li>
+    <li><a href="javascript:void(0)">日常维护</a> <span class="divider">/</span></li>
+    <li>操作日志 （记录数: <span id="cur_number">@ViewBag.TotalItems</span>）</li>
+</ul>
+<form action="/SysManage/BaseLog/Index" method="get" name="SearchForm" id="SearchForm" class="form-inline">
+    <div class="control-group">
+        <span>
+            日志日期:<input type="text" name="date" id="date" style="width: 200px;
+                    height: 18px" onfocus="WdatePicker({ isShowClear: false,skin: 'twoer' });" class="Wdate" value="@ViewBag.Date" />
+        </span>
+        操作人:
+        <div class="input-append">
+            <input class="input-large" id="RealName" name="RealName" type="text" placeholder="请输入操作人"
+                   value="@ViewBag.RealName" />
+            <button class="btn btn-danger" type="submit"><i class="icon-search icon-white"></i> 搜索</button>
+            <button class="btn btn-warning" type="button" id="clean"><i class="icon-share-alt icon-white"></i> 清除</button>
+        </div>
+
+    </div>
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th style="width:10%">操作账号</th>
+            <th style="width:10%">操作人</th>
+            <th>位置</th>
+            <th style="width:8%">类型</th>
+            <th style="width:15%">日期</th>
+            <th style="width:12%">客户端IP</th>
+            <th style="width:8%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var baseLog in Model)
+        {
+            <tr>
+                <td>@baseLog.UserName</td>
+                <td>@baseLog.RealName</td>
+                <td>@baseLog.NavigationUrl</td>
+                <td>@baseLog.TypeName</td>
+                <td>@baseLog.Date</td>
+                <td>@baseLog.IPAddress</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="javascript: showDetails('@baseLog.Id')">查看 </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Count() == 0)
+{
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        对不起，没有找到相匹配的记录
+    </div>
+}
+@Html.Raw(ViewBag.Pager)
+<script src="~/media/js/log.js"></script>

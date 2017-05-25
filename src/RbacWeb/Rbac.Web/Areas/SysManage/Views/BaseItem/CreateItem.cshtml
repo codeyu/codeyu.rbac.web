@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>创建字典类别</title>
+    <link href="~/media/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/default.css" rel="stylesheet" />
+    <link href="~/media/themes/blue/table.css" rel="stylesheet" />
+    <link href="~/media/ztree/css/jquery.ztree.css" rel="stylesheet" />
+    <script src="~/media/jquery/jquery.min.js"></script>
+    <script src="~/media/jquery/jquery.form.js"></script>
+    <script src="~/media/jquery/jquery.cookie.js"></script>
+    <script src="~/media/jquery/jquery.scrollUp.min.js"></script>
+    <script src="~/media/jquery/jquery.placeholder.min.js"></script>
+    <script src="~/media/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/media/noty/jquery.noty.js"></script>
+    <script src="~/media/noty/layouts/center.js"></script>
+    <script src="~/media/noty/themes/default.js"></script>
+    <script src="~/media/easytabs/jquery.hashchange.min.js"></script>
+    <script src="~/media/easytabs/jquery.easytabs.min.js"></script>
+    <script src="~/media/artdialog/artDialog.js?skin=blue"></script>
+    <script src="~/media/artdialog/plugins/iframeTools.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="~/media/ztree/js/jquery.ztree.exhide-3.5.min.js"></script>
+    <script src="~/media/js/common.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+    <ul class="breadcrumb">
+        <li><a href="javascript:void(0)">日常维护</a> <span class="divider">/</span></li>
+        <li><a href="/SysManage/BaseItem/ItemDetailList">字典明细</a> <span class="divider">/</span></li>
+        <li>创建字典类别（记录数: <span id="cur_number"></span>）</li>
+    </ul>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a class="btn" href="javascript: createItem()">创建</a>
+            <button class="btn" type="submit" name="submit_btn" id="submit_btn" data-loading-text="正在保存..." data-complete-text="保存" onclick="saveItem()">保存</button>
+        </div>
+    </div>
+    <table class="table table-hover" id="itemTable">
+        <thead>
+            <tr>
+                <th style="width:28%">类别编码</th>
+                <th style="width:28%">类别名称</th>
+                <th>备注说明</th>
+                <th style="width:10%">排序</th>
+                <th style="width:10%">删除</th>
+
+            </tr>
+        </thead>
+        <tbody id="itemTableBody">
+        </tbody>
+    </table>
+    <script src="~/media/js/itemcategory.js"></script>
+</body>
+</html>

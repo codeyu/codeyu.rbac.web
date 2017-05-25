@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E318FEBF-3A4C-4EE4-85F5-A264381263C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Murphy.Entity</RootNamespace>
+    <AssemblyName>Murphy.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AjaxMsg.cs" />
+    <Compile Include="BaseAccess.cs" />
+    <Compile Include="BaseButtonPermission.cs" />
+    <Compile Include="BaseFieldPermission.cs" />
+    <Compile Include="BaseFile.cs" />
+    <Compile Include="BaseItem.cs" />
+    <Compile Include="BaseItemDetail.cs" />
+    <Compile Include="BaseJobTitle.cs" />
+    <Compile Include="BaseLog.cs" />
+    <Compile Include="BaseModule.cs" />
+    <Compile Include="BaseModulePermission.cs" />
+    <Compile Include="BaseOrganize.cs" />
+    <Compile Include="BaseParameter.cs" />
+    <Compile Include="BasePermissionItem.cs" />
+    <Compile Include="BasePermissionScope.cs" />
+    <Compile Include="BaseRole.cs" />
+    <Compile Include="BaseTree.cs" />
+    <Compile Include="BaseUser.cs" />
+    <Compile Include="Generator\DataBaseNameSpace.cs" />
+    <Compile Include="Generator\DataBaseNameSpaceClass.cs" />
+    <Compile Include="Generator\DataBaseDirectory.cs" />
+    <Compile Include="Generator\DataBaseParam.cs" />
+    <Compile Include="font.cs" />
+    <Compile Include="Generator\DataBaseField.cs" />
+    <Compile Include="Generator\DataBaseTable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkFlow\WorkFlow_Bill.cs" />
+    <Compile Include="WorkFlow\WorkFlow_BillDetailTable.cs" />
+    <Compile Include="WorkFlow\WorkFlow_BillField.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Murphy.Core\Murphy.Core.csproj">
+      <Project>{d53fa764-b93d-4f52-80ed-34063b0e4204}</Project>
+      <Name>Murphy.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Murphy.DbUtility\Murphy.DbUtility.csproj">
+      <Project>{46f3ab86-e1db-4d1d-8d8f-811a79290283}</Project>
+      <Name>Murphy.DbUtility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
