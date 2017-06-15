@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.InfoCenter
+namespace Rbac.Web.Areas.InfoCenter
 {
     public class InfoCenterAreaRegistration : AreaRegistration
     {

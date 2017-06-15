@@ -1,7 +1,7 @@
-﻿using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Utils;
-using Murphy.Core;
+﻿using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Utils;
+using Rbac.Core;
 using Newtonsoft.Json;
 using Spring.Context;
 using Spring.Context.Support;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     public class BaseItemBll : BaseBll<BaseItem>
     {

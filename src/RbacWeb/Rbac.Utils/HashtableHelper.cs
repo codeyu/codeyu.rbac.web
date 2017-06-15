@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     public class HashtableHelper
     {

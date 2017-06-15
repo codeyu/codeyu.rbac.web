@@ -2,9 +2,9 @@
 // All Rights Reserved , Copyright © Murphy 
 //=====================================================================================
 
-using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Core;
+using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Core;
 using Newtonsoft.Json;
 using Spring.Context;
 using Spring.Context.Support;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     /// <summary>
     /// 表单字段

@@ -1,10 +1,10 @@
-﻿using Murphy.Entity;
+﻿using Rbac.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     /// <summary>
     /// 生成业务逻辑层
@@ -24,9 +24,9 @@ namespace Murphy.Business
             strBusiness.Append("//=====================================================================================\r\n");
             strBusiness.Append("// All Rights Reserved , Copyright © " + param.Company + " " + param.CreateYear + "\r\n");
             strBusiness.Append("//=====================================================================================\r\n\r\n");
-            strBusiness.Append("using Murphy.Entity;\r\n");
-            strBusiness.Append("using Murphy.IData;\r\n");
-            strBusiness.Append("using Murphy.Core;\r\n");
+            strBusiness.Append("using Rbac.Entity;\r\n");
+            strBusiness.Append("using Rbac.IData;\r\n");
+            strBusiness.Append("using Rbac.Core;\r\n");
             strBusiness.Append("using Newtonsoft.Json;\r\n");
             strBusiness.Append("using Spring.Context;\r\n");
             strBusiness.Append("using Spring.Context.Support;\r\n");

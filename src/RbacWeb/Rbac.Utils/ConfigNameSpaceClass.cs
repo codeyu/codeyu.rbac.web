@@ -1,4 +1,4 @@
-﻿using Murphy.Entity;
+﻿using Rbac.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     public class ConfigNameSpaceClass
     {

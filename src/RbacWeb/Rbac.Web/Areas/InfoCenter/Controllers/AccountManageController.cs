@@ -1,8 +1,8 @@
-﻿using Murphy.Business;
-using Murphy.Entity;
-using Murphy.Utils;
-using Murphy.Core;
-using Murphy.Web.Filters;
+﻿using Rbac.Business;
+using Rbac.Entity;
+using Rbac.Utils;
+using Rbac.Core;
+using Rbac.Web.Filters;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.InfoCenter.Controllers
+namespace Rbac.Web.Areas.InfoCenter.Controllers
 {
     /// <summary>
     /// 账号管理

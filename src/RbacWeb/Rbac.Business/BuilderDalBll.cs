@@ -1,10 +1,10 @@
-﻿using Murphy.Entity;
+﻿using Rbac.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
 
     /// <summary>
@@ -25,9 +25,9 @@ namespace Murphy.Business
             strDal.Append("//=====================================================================================\r\n");
             strDal.Append("// All Rights Reserved , Copyright © " + param.Company + " " + param.CreateYear + "\r\n");
             strDal.Append("//=====================================================================================\r\n\r\n");
-            strDal.Append("using Murphy.Entity;\r\n");
-            strDal.Append("using Murphy.IData;\r\n");
-            strDal.Append("using Murphy.Core;\r\n");
+            strDal.Append("using Rbac.Entity;\r\n");
+            strDal.Append("using Rbac.IData;\r\n");
+            strDal.Append("using Rbac.Core;\r\n");
             strDal.Append("using Newtonsoft.Json;\r\n");
             strDal.Append("using Spring.Context;\r\n");
             strDal.Append("using Spring.Context.Support;\r\n");

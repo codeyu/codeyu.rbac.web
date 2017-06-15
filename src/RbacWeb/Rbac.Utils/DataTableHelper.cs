@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     public static class DataTableHelper
     {

@@ -1,6 +1,6 @@
-﻿using Murphy.Business;
-using Murphy.Core;
-using Murphy.Entity;
+﻿using Rbac.Business;
+using Rbac.Core;
+using Rbac.Entity;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.InfoCenter.Controllers
+namespace Rbac.Web.Areas.InfoCenter.Controllers
 {
     /// <summary>
     /// 导航首页

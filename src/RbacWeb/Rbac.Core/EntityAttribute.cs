@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Core
+namespace Rbac.Core
 {
     /// <summary>
     /// 实体类扩展属性

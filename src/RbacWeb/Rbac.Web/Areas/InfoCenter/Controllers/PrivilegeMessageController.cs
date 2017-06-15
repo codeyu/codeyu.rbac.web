@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.InfoCenter.Controllers
+namespace Rbac.Web.Areas.InfoCenter.Controllers
 {
     public class PrivilegeMessageController : Controller
     {

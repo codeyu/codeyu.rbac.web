@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web
+namespace Rbac.Web
 {
     public class FilterConfig
     {

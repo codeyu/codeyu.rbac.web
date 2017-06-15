@@ -1,6 +1,6 @@
-﻿using Murphy.Core;
-using Murphy.Entity;
-using Murphy.Utils;
+﻿using Rbac.Core;
+using Rbac.Entity;
+using Rbac.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.Generator.Controllers
+namespace Rbac.Web.Areas.Generator.Controllers
 {
     /// <summary>
     /// 类库命名

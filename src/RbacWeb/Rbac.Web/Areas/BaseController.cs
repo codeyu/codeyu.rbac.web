@@ -1,11 +1,11 @@
-﻿using Murphy.Core;
+﻿using Rbac.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas
+namespace Rbac.Web.Areas
 {
     public class BaseController : Controller
     {

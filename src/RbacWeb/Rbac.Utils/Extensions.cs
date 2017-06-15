@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     /// <summary>
     /// 扩展属性

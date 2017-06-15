@@ -1,8 +1,8 @@
-﻿using Murphy.Business;
-using Murphy.Entity;
-using Murphy.Utils;
-using Murphy.Core;
-using Murphy.Web.ViewModel;
+﻿using Rbac.Business;
+using Rbac.Entity;
+using Rbac.Utils;
+using Rbac.Core;
+using Rbac.Web.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Controllers
+namespace Rbac.Web.Controllers
 {
     /// <summary>
     /// 

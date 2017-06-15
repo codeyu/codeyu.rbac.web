@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.IData
+namespace Rbac.IData
 {
     public interface IBaseDataPermissionDal
     {

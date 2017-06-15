@@ -1,13 +1,13 @@
-﻿using Murphy.IData;
-using Murphy.Utils;
-using Murphy.Core;
+﻿using Rbac.IData;
+using Rbac.Utils;
+using Rbac.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Data.SQLServer
+namespace Rbac.Data.SQLServer
 {  
     /// <summary>
     /// 数据权限基类

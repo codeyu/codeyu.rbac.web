@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Entity
+namespace Rbac.Entity
 {
     /// <summary>
     /// 命名空间

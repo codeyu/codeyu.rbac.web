@@ -1,7 +1,7 @@
-﻿using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Utils;
-using Murphy.Core;
+﻿using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Utils;
+using Rbac.Core;
 using Newtonsoft.Json;
 using PetaPoco;
 using Spring.Context;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     public class DataBaseBll
     {

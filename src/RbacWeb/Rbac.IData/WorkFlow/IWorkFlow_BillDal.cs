@@ -2,14 +2,14 @@
 // All Rights Reserved , Copyright © Murphy 
 //=====================================================================================
 
-using Murphy.Entity;
+using Rbac.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.IData
+namespace Rbac.IData
 {
     /// <summary>
     /// 

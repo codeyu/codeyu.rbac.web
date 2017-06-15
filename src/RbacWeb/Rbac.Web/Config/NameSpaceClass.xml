@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <namespaceclass>
-    <entity>Murphy.Entity</entity>
-    <dal>Murphy.Data.SQLServer</dal>
-    <business>Murphy.Business</business>
-    <idal>Murphy.IData</idal>
+    <entity>Rbac.Entity</entity>
+    <dal>Rbac.Data.SQLServer</dal>
+    <business>Rbac.Business</business>
+    <idal>Rbac.IData</idal>
   </namespaceclass>
 </root>

@@ -1,6 +1,6 @@
-﻿using Murphy.Core;
-using Murphy.IData;
-using Murphy.Utils;
+﻿using Rbac.Core;
+using Rbac.IData;
+using Rbac.Utils;
 using PetaPoco;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Data.SQLServer
+namespace Rbac.Data.SQLServer
 {
 
     public abstract class BaseDAL<T> : IBaseDal<T> where T : class

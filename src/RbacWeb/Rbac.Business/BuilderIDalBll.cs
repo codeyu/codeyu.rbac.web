@@ -1,10 +1,10 @@
-﻿using Murphy.Entity;
+﻿using Rbac.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     /// <summary>
     /// 生成数据访问接口层
@@ -24,9 +24,9 @@ namespace Murphy.Business
             strIDal.Append("//=====================================================================================\r\n");
             strIDal.Append("// All Rights Reserved , Copyright © " + param.Company + " " + param.CreateYear + "\r\n");
             strIDal.Append("//=====================================================================================\r\n\r\n");
-            strIDal.Append("using Murphy.Entity;\r\n");
-            strIDal.Append("using Murphy.IData;\r\n");
-            strIDal.Append("using Murphy.Core;\r\n");
+            strIDal.Append("using Rbac.Entity;\r\n");
+            strIDal.Append("using Rbac.IData;\r\n");
+            strIDal.Append("using Rbac.Core;\r\n");
             strIDal.Append("using Newtonsoft.Json;\r\n");
             strIDal.Append("using Spring.Context;\r\n");
             strIDal.Append("using Spring.Context.Support;\r\n");

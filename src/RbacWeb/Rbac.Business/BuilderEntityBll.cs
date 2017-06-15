@@ -1,6 +1,6 @@
-﻿using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Core;
+﻿using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Core;
 using Spring.Context;
 using Spring.Context.Support;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     /// <summary>
     /// 生成实体层
@@ -39,7 +39,7 @@ namespace Murphy.Business
             strEntity.Append("//=====================================================================================\r\n");
             strEntity.Append("// All Rights Reserved , Copyright © " + param.Company + " " + param.CreateYear + "\r\n");
             strEntity.Append("//=====================================================================================\r\n\r\n");
-            strEntity.Append("using Murphy.Core;\r\n");
+            strEntity.Append("using Rbac.Core;\r\n");
             strEntity.Append("using PetaPoco;\r\n");
             strEntity.Append("using System;\r\n");
             strEntity.Append("using System.Collections.Generic;\r\n");

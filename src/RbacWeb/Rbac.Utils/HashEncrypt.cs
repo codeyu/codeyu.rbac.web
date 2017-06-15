@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     /// <summary>
     /// 加密解密帮助类

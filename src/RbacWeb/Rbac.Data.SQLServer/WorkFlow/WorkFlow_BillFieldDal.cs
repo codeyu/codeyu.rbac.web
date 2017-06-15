@@ -2,17 +2,17 @@
 // All Rights Reserved , Copyright © Murphy 
 //=====================================================================================
 
-using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Core;
-using Murphy.Utils;
+using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Core;
+using Rbac.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Data.SQLServer
+namespace Rbac.Data.SQLServer
 {
     /// <summary>
     /// 

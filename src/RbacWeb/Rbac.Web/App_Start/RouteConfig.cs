@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Murphy.Web
+namespace Rbac.Web
 {
     public class RouteConfig
     {

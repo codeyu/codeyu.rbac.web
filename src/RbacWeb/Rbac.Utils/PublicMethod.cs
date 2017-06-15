@@ -1,4 +1,4 @@
-﻿using Murphy.Core;
+﻿using Rbac.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     public class PublicMethod
     {

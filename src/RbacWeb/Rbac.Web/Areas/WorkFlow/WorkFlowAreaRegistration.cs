@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.WorkFlow
+namespace Rbac.Web.Areas.WorkFlow
 {
     public class WorkFlowAreaRegistration : AreaRegistration
     {

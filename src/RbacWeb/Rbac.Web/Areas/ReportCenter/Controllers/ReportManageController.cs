@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.ReportCenter.Controllers
+namespace Rbac.Web.Areas.ReportCenter.Controllers
 {
     public class ReportManageController : BaseController
     {

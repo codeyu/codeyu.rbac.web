@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.SysManage
+namespace Rbac.Web.Areas.SysManage
 {
     public class SysManageAreaRegistration : AreaRegistration
     {

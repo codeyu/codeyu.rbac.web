@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Murphy.Web.ViewModel
+namespace Rbac.Web.ViewModel
 {
     /// <summary>
     /// 登陆视图模型

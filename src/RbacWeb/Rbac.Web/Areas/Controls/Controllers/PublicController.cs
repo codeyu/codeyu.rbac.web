@@ -1,11 +1,11 @@
-﻿using Murphy.Business;
+﻿using Rbac.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.Controls.Controllers
+namespace Rbac.Web.Areas.Controls.Controllers
 {
     public class PublicController : Controller
     {

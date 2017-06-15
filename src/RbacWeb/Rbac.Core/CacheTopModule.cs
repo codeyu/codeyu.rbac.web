@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Core
+namespace Rbac.Core
 {
     public class CacheTopModule
     {  

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Murphy.Core
+namespace Rbac.Core
 {
     /// <summary>
     /// 缓存帮助类

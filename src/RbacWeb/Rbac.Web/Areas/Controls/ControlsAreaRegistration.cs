@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.Controls
+namespace Rbac.Web.Areas.Controls
 {
     public class ControlsAreaRegistration : AreaRegistration
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Murphy.Web
+namespace Rbac.Web
 {
     public class BundleConfig
     {

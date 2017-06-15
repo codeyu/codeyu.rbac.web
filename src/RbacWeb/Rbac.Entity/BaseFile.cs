@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Entity
+namespace Rbac.Entity
 {
     public class BaseFile
     {

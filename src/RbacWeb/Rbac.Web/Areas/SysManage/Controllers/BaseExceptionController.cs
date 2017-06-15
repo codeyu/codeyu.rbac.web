@@ -1,6 +1,6 @@
-﻿using Murphy.Entity;
-using Murphy.Utils;
-using Murphy.Core;
+﻿using Rbac.Entity;
+using Rbac.Utils;
+using Rbac.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.SysManage.Controllers
+namespace Rbac.Web.Areas.SysManage.Controllers
 {
     /// <summary>
     /// 系统日志

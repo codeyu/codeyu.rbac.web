@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Entity
+namespace Rbac.Entity
 {
     /// <summary>
     /// 操作按钮权限实体

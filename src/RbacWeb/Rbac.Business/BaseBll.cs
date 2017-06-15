@@ -1,6 +1,6 @@
-﻿using Murphy.IData;
-using Murphy.Utils;
-using Murphy.Core;
+﻿using Rbac.IData;
+using Rbac.Utils;
+using Rbac.Core;
 using PetaPoco;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     /// <summary>
     /// 业务逻辑层基类

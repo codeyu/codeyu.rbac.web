@@ -1,7 +1,7 @@
-﻿using Murphy.Core;
-using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Utils;
+﻿using Rbac.Core;
+using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Utils;
 using Newtonsoft.Json;
 using Spring.Context;
 using Spring.Context.Support;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Murphy.Business
+namespace Rbac.Business
 {
     public class BaseUserBll : BaseBll<BaseUser>
     {

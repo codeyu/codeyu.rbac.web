@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.SysManage.Controllers
+namespace Rbac.Web.Areas.SysManage.Controllers
 {
     /// <summary>
     /// 系统设置

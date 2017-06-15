@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Murphy.Web.Areas.Generator
+namespace Rbac.Web.Areas.Generator
 {
     public class GeneratorAreaRegistration : AreaRegistration
     {

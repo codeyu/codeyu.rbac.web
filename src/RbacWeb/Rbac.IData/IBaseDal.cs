@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.IData
+namespace Rbac.IData
 {
     /// <summary>
     /// 数据层父接口

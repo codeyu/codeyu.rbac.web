@@ -1,14 +1,14 @@
-﻿using Murphy.Entity;
-using Murphy.IData;
-using Murphy.Utils;
-using Murphy.Core;
+﻿using Rbac.Entity;
+using Rbac.IData;
+using Rbac.Utils;
+using Rbac.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Data.SQLServer
+namespace Rbac.Data.SQLServer
 {
     public class BaseParameterDal : BaseDAL<BaseParameter>, IBaseParameterDal
     {

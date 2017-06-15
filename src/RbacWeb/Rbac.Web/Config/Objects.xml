@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
-  <object id="BaseAccessDal" type="Murphy.Data.SQLServer.BaseAccessDal, Murphy.Data.SQLServer" />
-  <object id="BaseLogDal" type="Murphy.Data.SQLServer.BaseLogDal, Murphy.Data.SQLServer" />
-  <object id="BaseOrganizeDal" type="Murphy.Data.SQLServer.BaseOrganizeDal, Murphy.Data.SQLServer" />
-  <object id="BaseParameterDal" type="Murphy.Data.SQLServer.BaseParameterDal, Murphy.Data.SQLServer" />
-  <object id="BaseStorageDal" type="Murphy.Data.SQLServer.BaseStorageDal, Murphy.Data.SQLServer" />
-  <object id="BaseUserDal" type="Murphy.Data.SQLServer.BaseUserDal, Murphy.Data.SQLServer" />
-  <object id="BaseRoleDal" type="Murphy.Data.SQLServer.BaseRoleDal, Murphy.Data.SQLServer" />
-  <object id="BaseJobTitleDal" type="Murphy.Data.SQLServer.BaseJobTitleDal, Murphy.Data.SQLServer" />
-  <object id="BaseModuleDal" type="Murphy.Data.SQLServer.BaseModuleDal, Murphy.Data.SQLServer" />
-  <object id="BasePermissionItemDal" type="Murphy.Data.SQLServer.BasePermissionItemDal, Murphy.Data.SQLServer" />
-  <object id="BaseItemDetailDal" type="Murphy.Data.SQLServer.BaseItemDetailDal, Murphy.Data.SQLServer" />
-  <object id="BaseItemDal" type="Murphy.Data.SQLServer.BaseItemDal, Murphy.Data.SQLServer" />
-  <object id="DataBaseDal" type="Murphy.Data.SQLServer.DataBaseDal, Murphy.Data.SQLServer" />
+  <object id="BaseAccessDal" type="Rbac.Data.SQLServer.BaseAccessDal, Rbac.Data.SQLServer" />
+  <object id="BaseLogDal" type="Rbac.Data.SQLServer.BaseLogDal, Rbac.Data.SQLServer" />
+  <object id="BaseOrganizeDal" type="Rbac.Data.SQLServer.BaseOrganizeDal, Rbac.Data.SQLServer" />
+  <object id="BaseParameterDal" type="Rbac.Data.SQLServer.BaseParameterDal, Rbac.Data.SQLServer" />
+  <object id="BaseStorageDal" type="Rbac.Data.SQLServer.BaseStorageDal, Rbac.Data.SQLServer" />
+  <object id="BaseUserDal" type="Rbac.Data.SQLServer.BaseUserDal, Rbac.Data.SQLServer" />
+  <object id="BaseRoleDal" type="Rbac.Data.SQLServer.BaseRoleDal, Rbac.Data.SQLServer" />
+  <object id="BaseJobTitleDal" type="Rbac.Data.SQLServer.BaseJobTitleDal, Rbac.Data.SQLServer" />
+  <object id="BaseModuleDal" type="Rbac.Data.SQLServer.BaseModuleDal, Rbac.Data.SQLServer" />
+  <object id="BasePermissionItemDal" type="Rbac.Data.SQLServer.BasePermissionItemDal, Rbac.Data.SQLServer" />
+  <object id="BaseItemDetailDal" type="Rbac.Data.SQLServer.BaseItemDetailDal, Rbac.Data.SQLServer" />
+  <object id="BaseItemDal" type="Rbac.Data.SQLServer.BaseItemDal, Rbac.Data.SQLServer" />
+  <object id="DataBaseDal" type="Rbac.Data.SQLServer.DataBaseDal, Rbac.Data.SQLServer" />
   <!--工作流-->
-  <object id="WorkFlow_BillDal" type="Murphy.Data.SQLServer.WorkFlow_BillDal, Murphy.Data.SQLServer" />
+  <object id="WorkFlow_BillDal" type="Rbac.Data.SQLServer.WorkFlow_BillDal, Rbac.Data.SQLServer" />
 </objects>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Murphy.Utils
+namespace Rbac.Utils
 {
     /// <summary>
     /// 分页帮助类
